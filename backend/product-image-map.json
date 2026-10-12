@@ -1,0 +1,191 @@
+{
+  "iphone-7": {
+    "front": "IPhone 7 Jet Black.svg",
+    "back": "IPhone7.jpg"
+  },
+  "iphone-7-plus": {
+    "front": "IPhone 7 Plus Jet Black.svg",
+    "back": "IPhone 7 and iPhone 7 Plus.jpg"
+  },
+  "iphone-8": {
+    "front": "IPhone 8 vector.svg",
+    "back": "IPhone 8 silver with white rear.jpg"
+  },
+  "iphone-8-plus": {
+    "front": "IPhone 8 vector.svg",
+    "back": "IPhone 8 silver and iPhone 8 Plus gold.jpg"
+  },
+  "iphone-x": {
+    "front": "IPhone X vector.svg",
+    "back": "IPhone X with packaging and accessories.jpg"
+  },
+  "iphone-xr": {
+    "front": "IPhone XR Blue.svg",
+    "back": "IPhone XR.jpg"
+  },
+  "iphone-11": {
+    "front": "IPhone 11 Green.svg",
+    "back": "IPhone 11 RED.jpg"
+  },
+  "iphone-11-pro": {
+    "front": "IPhone 11 Pro Midnight Green.svg",
+    "back": "2019-12-22 IPhone 11 Pro.jpg"
+  },
+  "iphone-11-pro-max": {
+    "front": "IPhone 11 Pro Max Midnight Green.svg",
+    "back": "2019-12-22 IPhone 11 Pro.jpg"
+  },
+  "iphone-12": {
+    "front": "IPhone 12 Blue.svg",
+    "back": "Iphone-12-product--red.png"
+  },
+  "iphone-12-pro": {
+    "front": "IPhone 12 Pro Gold.svg",
+    "back": "IPhone 12 Pro - 3.jpg"
+  },
+  "iphone-12-pro-max": {
+    "front": "IPhone 12 Pro Max.png",
+    "back": "IPhone 12 Pro - 3.jpg"
+  },
+  "iphone-13": {
+    "front": "IPhone 13 vector.svg",
+    "back": "Back of the iPhone 13 Pro.jpg"
+  },
+  "iphone-13-pro": {
+    "front": "IPhone 13 Pro vector.svg",
+    "back": "Back of the iPhone 13 Pro.jpg"
+  },
+  "iphone-13-pro-max": {
+    "front": "IPhone 13 Pro vector.svg",
+    "back": "Apple iPhone 13 Pro and 13 Pro Max.jpg"
+  },
+  "iphone-14": {
+    "front": "IPhone 14 vector.svg",
+    "back": "IPhone 14 Product Red.jpg"
+  },
+  "iphone-14-pro": {
+    "front": "IPhone 14 Pro DI Vector.svg",
+    "back": "Back of the iPhone 14 Pro.jpg"
+  },
+  "iphone-14-pro-max": {
+    "front": "IPhone 14 Pro DI Vector.svg",
+    "back": "IPhone 14 Pro - 2.jpg"
+  },
+  "iphone-15": {
+    "front": "IPhone 15 Vector.svg",
+    "back": "Back of iPhone 15.jpg"
+  },
+  "iphone-15-pro": {
+    "front": "IPhone 15 Pro Vector.svg",
+    "back": "Apple iPhone 15 Pro.jpg"
+  },
+  "iphone-15-pro-max": {
+    "front": "IPhone 15 Pro Max Vector.svg",
+    "back": "Apple iPhone 15 Pro.jpg"
+  },
+  "iphone-16": {
+    "front": "IPhone 16 Vector.svg",
+    "back": "Back of iPhone 16.jpg"
+  },
+  "iphone-16-pro": {
+    "front": "IPhone 16 Pro Vector.svg",
+    "back": "Back of iPhone 16 Pro - 1.jpg"
+  },
+  "iphone-16-pro-max": {
+    "front": "IPhone 16 Pro Max Vector.svg",
+    "back": "Back view of iPhone 16 Pro White Titanium.jpg"
+  },
+  "iphone-17": {
+    "front": "IPhone 16 Vector.svg",
+    "back": "IPhone 17, Air, 17 Pro, and Pro max.jpg"
+  },
+  "iphone-17-pro": {
+    "front": "IPhone 16 Pro Vector.svg",
+    "back": "IPhone 17 Pro.png"
+  },
+  "iphone-17-pro-max": {
+    "front": "IPhone 16 Pro Max Vector.svg",
+    "back": "IPhone 17, Air, 17 Pro, and Pro max.jpg"
+  },
+  "iphone-18": {
+    "front": "IPhone 18 Pro Vector.svg",
+    "back": "IPhone 18 Pro black rear.jpg"
+  },
+  "iphone-18-pro": {
+    "front": "IPhone 18 Pro (with Apple logo).svg",
+    "back": "IPhone 18 Pro black rear.jpg"
+  },
+  "iphone-18-pro-max": {
+    "front": "IPhone 18 Pro Max (with Apple logo).svg",
+    "back": "IPhone 18 Pro black rear.jpg"
+  },
+  "hp-elitebook-840-g8": {
+    "front": "HP EliteBook 840 G8.png"
+  },
+  "hp-spectre-x360-14": {
+    "front": "Hp Spectre x360.jpg"
+  },
+  "hp-pavilion-15": {
+    "front": "HP Pavilion 15 cs3095nr.jpg"
+  },
+  "hp-zbook-studio-g8": {
+    "front": "HP ZBook 15 G3 with AKiTiO Node (35030980124).jpg"
+  },
+  "hp-probook-450-g9": {
+    "front": "HP ProBook 640 G1.jpg"
+  },
+  "mercedes-g63-amg-2019": {
+    "front": "Mercedes-AMG G 63 (2018) IMG 4370.jpg"
+  },
+  "mercedes-gle-450-2021": {
+    "front": "Mercedes-Benz GLE 450 4MATIC AMG Line W167 Black (3).jpg"
+  },
+  "mercedes-gls-450-2018": {
+    "front": "2017 Mercedes-Benz GLS 450 wagon (White), rear left.jpg"
+  },
+  "mercedes-e300-2017": {
+    "front": "Mercedes-Benz E300 (W213) Washington DC Metro Area, USA (1).jpg"
+  },
+  "mercedes-c300-amg-2018": {
+    "front": "Mercedes-Benz C300 (W206) Washington DC Metro Area, USA (1).jpg"
+  },
+  "mercedes-c300-2015": {
+    "front": "Mercedes-Benz C300 (W204) Washington DC Metro Area, USA (1).jpg"
+  },
+  "mercedes-glk-350-2014": {
+    "front": "Mercedes-Benz GLK 350 4MATIC Sport-Paket AMG (X 204, Facelift) – f 04032020.jpg"
+  },
+  "mercedes-ml-350-2012": {
+    "front": "Mercedes-Benz ML 350 BlueTEC 4MATIC Sport-Paket AMG (W 166) – Frontansicht, 12. Juli 2012, Velbert.jpg"
+  },
+  "toyota-highlander-limited-2015": {
+    "front": "Toyota Highlander (XU70) Washington DC Metro Area, USA.gif"
+  },
+  "toyota-camry-se-xse-2018": {
+    "front": "2018 Toyota Camry (ASV70R) Ascent sedan (2018-08-27) 01.jpg"
+  },
+  "toyota-rav4-xle-2016": {
+    "front": "Toyota Rav4 2016.jpg"
+  },
+  "toyota-camry-se-2015": {
+    "front": "2018 Toyota Camry (ASV70R) Ascent sedan (2018-08-27) 01.jpg"
+  },
+  "toyota-corolla-le-2017": {
+    "front": "Toyota Corolla 2017.jpg"
+  },
+  "toyota-venza-xle-2013": {
+    "front": "TOYOTA VENZA 2013 01.JPG"
+  },
+  "toyota-camry-le-2012": {
+    "front": "2018 Toyota Camry (ASV70R) Ascent sedan (2018-08-27) 01.jpg"
+  },
+  "toyota-corolla-le-2012": {
+    "front": "Toyota Corolla 2017.jpg"
+  },
+  "toyota-corolla-s-2010": {
+    "front": "Toyota Corolla 2017.jpg"
+  },
+  "toyota-avalon-limited-2014": {
+    "front": "TOYOTA AVALON China (9) (cropped).jpg"
+  }
+}

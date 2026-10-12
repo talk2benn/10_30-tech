@@ -528,6 +528,56 @@
         transition: transform 700ms ease, filter 700ms ease;
       }
 
+      .product-image.has-views {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2px;
+        background: #d8d9d2;
+      }
+
+      .product-image-view {
+        position: relative;
+        min-width: 0;
+        min-height: 0;
+        margin: 0;
+        overflow: hidden;
+        background: #e5e4df;
+      }
+
+      .product-image.has-views .product-image-view img,
+      .product-modal-gallery .product-image-view img {
+        object-fit: contain;
+        background: #f1f0eb;
+      }
+
+      .product-image-view figcaption {
+        position: absolute;
+        right: 7px;
+        bottom: 7px;
+        left: 7px;
+        z-index: 1;
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-align: center;
+        text-shadow: 0 1px 4px #000;
+        text-transform: uppercase;
+      }
+
+      .image-attribution {
+        margin: 8px 16px 0;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.4;
+      }
+
+      .image-attribution a {
+        color: var(--blue-dark);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
       .product-card:hover .product-image img {
         transform: scale(1.045);
         filter: saturate(1) contrast(1.07);
@@ -1160,6 +1210,19 @@
         object-fit: cover;
       }
 
+      .product-modal-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        align-items: stretch;
+        gap: 3px;
+        overflow: hidden;
+        background: #dedfd7;
+      }
+
+      .product-modal-gallery .product-image-view {
+        min-height: 190px;
+      }
+
       .checkout-form {
         display: grid;
         gap: 14px;
@@ -1211,25 +1274,6 @@
         background: rgba(59, 77, 60, 0.08);
         border: 1px solid rgba(59, 77, 60, 0.16);
         font-weight: 700;
-      }
-
-      .admin-access {
-        display: block;
-        width: fit-content;
-        margin: 24px auto 0;
-        padding: 8px 12px;
-        color: rgba(248, 246, 241, 0.58);
-        background: transparent;
-        border: 1px solid rgba(248, 246, 241, 0.2);
-        font-size: 10px;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        text-decoration: none;
-      }
-
-      .admin-access:hover {
-        color: #fff;
-        border-color: rgba(248, 246, 241, 0.65);
       }
 
       .backend-status {
@@ -2025,7 +2069,6 @@
         </a>
       </div>
       <div class="footer-legal">© 2026 1030 Tech • All Rights Reserved.</div>
-      <a class="admin-access" href="/admin">Admin Access</a>
     </footer>
 
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
@@ -2212,6 +2255,37 @@
         return products.find((product) => product.id === productId);
       }
 
+      function getProductImageViews(product) {
+        const images = [product.image, product.imageBack].filter(Boolean);
+        return images.map((image, index) => ({
+          image,
+          label: product.category === "Phones" ? (index === 0 ? "Front" : "Back") : (index === 0 ? "Product view" : "Second view"),
+        }));
+      }
+
+      function renderProductImageGallery(product, className) {
+        const views = getProductImageViews(product);
+        return `<div class="${className}${views.length > 1 ? " has-views" : ""}">
+          ${views.map(({ image, label }) => `
+            <figure class="product-image-view">
+              <img src="${escapeHTML(image)}" alt="${escapeHTML(`${label} view of ${product.title}`)}" loading="lazy" />
+              ${views.length > 1 ? `<figcaption>${label}</figcaption>` : ""}
+            </figure>
+          `).join("")}
+          ${className === "product-image" ? `<span class="product-status">${escapeHTML(product.status)}</span>` : ""}
+        </div>`;
+      }
+
+      function renderImageAttribution(product) {
+        const sources = [
+          product.imageSource ? `<a href="${escapeHTML(product.imageSource)}" target="_blank" rel="noreferrer">Source, creator &amp; licence</a>` : "",
+          product.imageBackSource ? `<a href="${escapeHTML(product.imageBackSource)}" target="_blank" rel="noreferrer">Second-view credit &amp; licence</a>` : "",
+        ].filter(Boolean);
+        return sources.length
+          ? `<p class="image-attribution">Representative product imagery · Wikimedia Commons · ${sources.join(" · ")}</p>`
+          : "";
+      }
+
       function getStorage(product) {
         return selectedStorage.get(product.id) || product.storage?.[0];
       }
@@ -2297,10 +2371,8 @@
                 : "";
               return `
               <article class="product-card">
-                <div class="product-image">
-                  <img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.title)}" loading="lazy" />
-                  <span class="product-status">${escapeHTML(product.status)}</span>
-                </div>
+                ${renderProductImageGallery(product, "product-image")}
+                ${renderImageAttribution(product)}
                 <div class="product-body">
                   <span class="product-brand">${escapeHTML(product.brand)} / ${escapeHTML(product.category)}</span>
                   <h3 class="product-title">${escapeHTML(product.title)}</h3>
@@ -2522,8 +2594,9 @@
           </div>
           <div class="modal-body">
             <div class="product-modal-layout">
-              <img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.title)}" />
+              ${renderProductImageGallery(product, "product-modal-gallery")}
               <div>
+                ${renderImageAttribution(product)}
                 <span class="product-brand">${escapeHTML(product.brand)} / ${escapeHTML(product.category)}</span>
                 <p>${escapeHTML(product.specifications)}</p>
                 ${product.storage ? `<label class="spec-label" for="modal-storage-${product.id}">Storage</label>

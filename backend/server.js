@@ -27,7 +27,34 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const port = Number(process.env.PORT) || 3000;
 const jwtSecret = process.env.JWT_SECRET;
 const maxProductImageBytes = 1024 * 1024;
-const seedProducts = JSON.parse(fs.readFileSync(path.join(__dirname, "seed-products.json"), "utf8"));
+const legacyPlaceholderImages = [
+  "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+];
+const productImageFiles = JSON.parse(fs.readFileSync(path.join(__dirname, "product-image-map.json"), "utf8"));
+
+function commonsImageUrl(file) {
+  return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=900`;
+}
+
+function commonsFileUrl(file) {
+  return `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file).replace(/%20/g, "_")}`;
+}
+
+const seedProducts = JSON.parse(fs.readFileSync(path.join(__dirname, "seed-products.json"), "utf8"))
+  .map((product) => {
+    const files = productImageFiles[product.id];
+    if (!files) return product;
+    return {
+      ...product,
+      image: commonsImageUrl(files.front),
+      ...(files.back ? { imageBack: commonsImageUrl(files.back) } : {}),
+      imageSource: commonsFileUrl(files.front),
+      ...(files.back ? { imageBackSource: commonsFileUrl(files.back) } : {}),
+    };
+  });
 const defaultDeliveryZones = [
   {
     name: "Zone 1 - Mainland: Ikeja, Yaba, Surulere, Lagos Island (₦2k-₦3k)",
@@ -110,6 +137,33 @@ function filterFor(category, brand) {
   return brand;
 }
 
+function validateProductImage(value) {
+  const image = typeof value === "string" ? value.trim() : "";
+  if (!image) return { image: null };
+  if (image.startsWith("data:")) {
+    const match = image.match(/^data:image\/(jpeg|png|webp);base64,([A-Za-z0-9+/]+={0,2})$/);
+    if (!match) return { error: "Uploaded images must be valid JPEG, PNG, or WebP files." };
+    const bytes = Buffer.from(match[2], "base64");
+    if (bytes.length > maxProductImageBytes || bytes.toString("base64") !== match[2]) {
+      return { error: "Uploaded images must be 1 MB or smaller." };
+    }
+    const validSignature = match[1] === "jpeg"
+      ? bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff
+      : match[1] === "png"
+        ? bytes.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))
+        : bytes.length >= 12 && bytes.toString("ascii", 0, 4) === "RIFF" && bytes.toString("ascii", 8, 12) === "WEBP";
+    if (!validSignature) return { error: "The uploaded file contents do not match a supported image format." };
+    return { image };
+  }
+  try {
+    const imageUrl = new URL(image);
+    if (!["https:", "http:"].includes(imageUrl.protocol)) throw new Error();
+    return { image: imageUrl.href };
+  } catch {
+    return { error: "Image must be a valid HTTP or HTTPS URL." };
+  }
+}
+
 function validateProduct(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     return { error: "A product object is required." };
@@ -131,31 +185,14 @@ function validateProduct(input) {
   }
   if (!Number.isSafeInteger(price) || price < 1) return { error: "Price must be a positive whole number of naira." };
 
-  let image = typeof input.image === "string" ? input.image.trim() : "";
-  if (image) {
-    if (image.startsWith("data:")) {
-      const match = image.match(/^data:image\/(jpeg|png|webp);base64,([A-Za-z0-9+/]+={0,2})$/);
-      if (!match) return { error: "Uploaded images must be valid JPEG, PNG, or WebP files." };
-      const bytes = Buffer.from(match[2], "base64");
-      if (bytes.length > maxProductImageBytes || bytes.toString("base64") !== match[2]) {
-        return { error: "Uploaded images must be 1 MB or smaller." };
-      }
-      const validSignature = match[1] === "jpeg"
-        ? bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff
-        : match[1] === "png"
-          ? bytes.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))
-          : bytes.length >= 12 && bytes.toString("ascii", 0, 4) === "RIFF" && bytes.toString("ascii", 8, 12) === "WEBP";
-      if (!validSignature) return { error: "The uploaded file contents do not match a supported image format." };
-    } else {
-      try {
-        const imageUrl = new URL(image);
-        if (!["https:", "http:"].includes(imageUrl.protocol)) throw new Error();
-        image = imageUrl.href;
-      } catch {
-        return { error: "Image must be a valid HTTP or HTTPS URL." };
-      }
-    }
-  }
+  const primaryImage = validateProductImage(input.image);
+  if (primaryImage.error) return { error: primaryImage.error };
+  const backImage = validateProductImage(input.imageBack);
+  if (backImage.error) return { error: backImage.error };
+  const imageSource = validateProductImage(input.imageSource);
+  if (imageSource.error) return { error: "Image source must be a valid HTTP or HTTPS URL." };
+  const imageBackSource = validateProductImage(input.imageBackSource);
+  if (imageBackSource.error) return { error: "Second image source must be a valid HTTP or HTTPS URL." };
 
   let storage;
   let storagePrices;
@@ -190,7 +227,10 @@ function validateProduct(input) {
       filter: filterFor(category, brand),
       specifications,
       price,
-      image: image || null,
+      image: primaryImage.image,
+      ...(backImage.image ? { imageBack: backImage.image } : {}),
+      ...(imageSource.image ? { imageSource: imageSource.image } : {}),
+      ...(imageBackSource.image ? { imageBackSource: imageBackSource.image } : {}),
       status,
       ...(storage ? { storage, storagePrices } : {}),
     },
@@ -285,6 +325,22 @@ async function initializeDatabase() {
     }
     console.info(`Seeded ${seedProducts.length} products.`);
   }
+
+  for (const product of seedProducts) {
+    if (!product.imageSource) continue;
+    const defaultImages = {
+      image: product.image,
+      imageSource: product.imageSource,
+      ...(product.imageBack ? { imageBack: product.imageBack } : {}),
+      ...(product.imageBackSource ? { imageBackSource: product.imageBackSource } : {}),
+    };
+    await pool.query(
+      `UPDATE products
+       SET data = data || $2::jsonb, updated_at = NOW()
+       WHERE id = $1 AND data->>'image' = ANY($3::text[])`,
+      [product.id, JSON.stringify(defaultImages), legacyPlaceholderImages]
+    );
+  }
 }
 
 app.get("/api/health", async (_req, res) => {
@@ -362,7 +418,16 @@ app.put("/api/admin/products/:id", requireAdmin, async (req, res, next) => {
     const { rows } = await pool.query("SELECT data FROM products WHERE id = $1", [req.params.id]);
     if (!rows[0]) return apiError(res, 404, "Product was not found.");
     const previous = rows[0].data;
-    const product = { ...result.product, id: req.params.id, image: result.product.image || previous.image };
+    const image = result.product.image || previous.image;
+    const imageBack = result.product.imageBack || previous.imageBack;
+    const product = {
+      ...result.product,
+      id: req.params.id,
+      image,
+      imageBack,
+      imageSource: result.product.imageSource || (image === previous.image ? previous.imageSource : undefined),
+      imageBackSource: result.product.imageBackSource || (imageBack === previous.imageBack ? previous.imageBackSource : undefined),
+    };
     await pool.query("UPDATE products SET data = $2::jsonb, updated_at = NOW() WHERE id = $1", [product.id, JSON.stringify(product)]);
     return res.json(product);
   } catch (error) {

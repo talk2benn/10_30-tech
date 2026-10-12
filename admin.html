@@ -125,6 +125,7 @@
                 <div class="field"><label for="status">Availability</label><input id="status" name="status" maxlength="40" value="Available" required /></div>
                 <div class="field"><label for="imageUpload">Upload image</label><input id="imageUpload" name="imageUpload" type="file" accept="image/jpeg,image/png,image/webp" /><p class="hint">JPEG, PNG, or WebP; up to 1 MB.</p></div>
                 <div class="field full"><label for="imageUrl">Or image URL</label><input id="imageUrl" name="image" type="url" placeholder="https://..." /><img class="preview" id="imagePreview" alt="Selected product image preview" /></div>
+                <div class="field full"><label for="imageBackUrl">Back / second view URL</label><input id="imageBackUrl" name="imageBack" type="url" placeholder="https://..." /><p class="hint">Optional second view, useful for showing both sides of a phone.</p></div>
                 <div class="field"><label for="storage">Storage options</label><input id="storage" name="storage" placeholder="128GB, 256GB, 512GB" /><p class="hint">Optional; enter comma-separated capacities.</p></div>
                 <div class="field"><label for="storagePrices">Storage prices (₦)</label><input id="storagePrices" name="storagePrices" placeholder="1100000, 1250000, 1450000" /><p class="hint">Enter one price per capacity, in the same order.</p></div>
               </div>
@@ -235,6 +236,7 @@
           specifications: product.specifications,
           status: product.status,
           image: product.image?.startsWith("data:") ? "" : product.image || "",
+          imageBack: product.imageBack?.startsWith("data:") ? "" : product.imageBack || "",
           storage: product.storage?.join(", ") || "",
           storagePrices: product.storage?.map((capacity) => product.storagePrices[capacity]).join(", ") || "",
         };
@@ -328,6 +330,7 @@
             specifications: String(data.get("specifications")).trim(),
             status: String(data.get("status")).trim(),
             ...(image ? { image } : {}),
+            imageBack: String(data.get("imageBack")).trim(),
             ...(storage.length ? { storage, storagePrices } : {}),
           };
           if (product && !storage.length) {
