@@ -194,6 +194,16 @@ function priceFor(product, storage) {
   return tierPrice;
 }
 
+async function ensureDefaultDeliveryZones() {
+  for (const zone of defaultDeliveryZones) {
+    await pool.query(
+      `INSERT INTO delivery_zones (id, name, fee) VALUES ($1, $2, $3)
+       ON CONFLICT (LOWER(name)) DO NOTHING`,
+      [randomUUID(), zone.name, zone.fee]
+    );
+  }
+}
+
 async function initializeDatabase() {
   await pool.query(`
     CREATE TABLE IF NOT EXISTS products (
@@ -240,13 +250,7 @@ async function initializeDatabase() {
     [configuredEmail, passwordHash]
   );
 
-  for (const zone of defaultDeliveryZones) {
-    await pool.query(
-      `INSERT INTO delivery_zones (id, name, fee) VALUES ($1, $2, $3)
-       ON CONFLICT (LOWER(name)) DO NOTHING`,
-      [randomUUID(), zone.name, zone.fee]
-    );
-  }
+  await ensureDefaultDeliveryZones();
 
   const { rows } = await pool.query("SELECT COUNT(*)::int AS count FROM products");
   if (rows[0].count === 0) {
@@ -288,7 +292,11 @@ app.get("/api/products", async (_req, res, next) => {
 
 app.get("/api/delivery-zones", async (_req, res, next) => {
   try {
-    const { rows } = await pool.query("SELECT id, name, fee FROM delivery_zones ORDER BY name");
+    let { rows } = await pool.query("SELECT id, name, fee FROM delivery_zones ORDER BY name");
+    if (!rows.length) {
+      await ensureDefaultDeliveryZones();
+      ({ rows } = await pool.query("SELECT id, name, fee FROM delivery_zones ORDER BY name"));
+    }
     return res.json(rows.map((zone) => ({ ...zone, fee: Number(zone.fee) })));
   } catch (error) {
     return next(error);
