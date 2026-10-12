@@ -1169,9 +1169,7 @@
         display: none;
       }
 
-      #deliveryZoneField[hidden],
-      #adminDashboard[hidden],
-      #cancelProductEdit[hidden] {
+      #deliveryZoneField[hidden] {
         display: none;
       }
 
@@ -1200,9 +1198,7 @@
         resize: vertical;
       }
 
-      .fulfillment-summary,
-      .admin-product-row,
-      .delivery-zone-row {
+      .fulfillment-summary {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -1225,170 +1221,15 @@
         color: rgba(248, 246, 241, 0.58);
         background: transparent;
         border: 1px solid rgba(248, 246, 241, 0.2);
-        cursor: pointer;
         font-size: 10px;
         letter-spacing: 0.16em;
         text-transform: uppercase;
+        text-decoration: none;
       }
 
       .admin-access:hover {
         color: #fff;
         border-color: rgba(248, 246, 241, 0.65);
-      }
-
-      .admin-panel {
-        width: min(900px, calc(100% - 28px));
-      }
-
-      .admin-section {
-        padding: 0 0 22px;
-        margin-bottom: 22px;
-        border-bottom: 1px solid rgba(34, 34, 34, 0.12);
-      }
-
-      .admin-section:last-child {
-        border-bottom: 0;
-        margin-bottom: 0;
-      }
-
-      .admin-section h3 {
-        margin-bottom: 14px;
-        font-size: 30px;
-      }
-
-      .admin-form-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-      }
-
-      .admin-form label {
-        display: grid;
-        gap: 6px;
-        color: var(--muted);
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .admin-form input,
-      .admin-form select,
-      .admin-form textarea {
-        width: 100%;
-        min-height: 42px;
-        padding: 10px 12px;
-        color: var(--ink);
-        background: #fffefa;
-        border: 1px solid rgba(34, 34, 34, 0.18);
-        font: inherit;
-        font-size: 13px;
-      }
-
-      .admin-form textarea {
-        min-height: 72px;
-        resize: vertical;
-      }
-
-      .admin-image-preview {
-        width: 112px;
-        height: 112px;
-        margin-top: 10px;
-        border: 1px solid rgba(17, 17, 17, 0.15);
-        object-fit: cover;
-      }
-
-      .admin-image-help {
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1.5;
-      }
-
-      .admin-field-wide {
-        grid-column: 1 / -1;
-      }
-
-      .admin-form-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 14px;
-      }
-
-      .admin-secondary-button {
-        min-height: 42px;
-        padding: 0 16px;
-        color: var(--ink);
-        background: transparent;
-        border: 1px solid rgba(34, 34, 34, 0.22);
-        cursor: pointer;
-        font-weight: 700;
-      }
-
-      .admin-list {
-        display: grid;
-        gap: 8px;
-        max-height: 300px;
-        overflow: auto;
-      }
-
-      .admin-product-row,
-      .delivery-zone-row {
-        padding: 10px 12px;
-        background: rgba(59, 77, 60, 0.05);
-        border: 1px solid rgba(59, 77, 60, 0.12);
-      }
-
-      .admin-product-row strong,
-      .delivery-zone-row strong {
-        display: block;
-        font-size: 13px;
-      }
-
-      .admin-product-row small,
-      .delivery-zone-row small {
-        display: block;
-        margin-top: 4px;
-        color: var(--muted);
-      }
-
-      .admin-row-actions {
-        display: flex;
-        gap: 6px;
-        flex: 0 0 auto;
-      }
-
-      .admin-row-actions button {
-        min-height: 34px;
-        padding: 0 10px;
-        color: var(--blue-dark);
-        background: #fffefa;
-        border: 1px solid rgba(59, 77, 60, 0.2);
-        cursor: pointer;
-        font-size: 11px;
-        font-weight: 700;
-      }
-
-      .admin-row-actions button[data-delete-product],
-      .admin-row-actions button[data-delete-zone] {
-        color: #8a3434;
-      }
-
-      .admin-status {
-        min-height: 20px;
-        margin: 10px 0 0;
-        color: var(--blue-dark);
-        font-size: 13px;
-      }
-
-      .admin-notice {
-        margin: 0 0 20px;
-        padding: 12px 14px;
-        color: #5f5749;
-        background: #eee7d7;
-        border-left: 3px solid var(--blue);
-        font-size: 12px;
-        line-height: 1.6;
       }
 
       .backend-status {
@@ -1405,26 +1246,6 @@
 
       .backend-status[hidden] {
         display: none;
-      }
-
-      .admin-status.is-error {
-        color: #a12828;
-      }
-
-      @media (max-width: 600px) {
-        .admin-form-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .admin-field-wide {
-          grid-column: auto;
-        }
-
-        .admin-product-row,
-        .delivery-zone-row {
-          align-items: flex-start;
-          flex-direction: column;
-        }
       }
 
       .confirmation {
@@ -2204,7 +2025,7 @@
         </a>
       </div>
       <div class="footer-legal">© 2026 1030 Tech • All Rights Reserved.</div>
-      <button class="admin-access" id="adminAccess" type="button">Admin Access</button>
+      <a class="admin-access" href="/admin">Admin Access</a>
     </footer>
 
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
@@ -2265,80 +2086,6 @@
         <div class="confirmation" id="confirmationMessage" role="status"></div>
       </div>
     </section>
-    <section class="modal admin-panel" id="adminModal" aria-hidden="true" aria-label="Admin control dashboard">
-      <div class="modal-head">
-        <h2 class="modal-title">Admin Dashboard</h2>
-        <button class="close-button" type="button" data-close-modal aria-label="Close admin dashboard">×</button>
-      </div>
-      <div class="modal-body">
-        <p class="admin-notice">Sign in with the admin email and password configured for the backend. Product and delivery changes are shared across visitors; orders are validated and stored by the server.</p>
-        <form class="checkout-form" id="adminPinForm">
-          <label>
-            Admin email
-            <input name="email" type="email" autocomplete="username" required />
-          </label>
-          <label>
-            Admin password
-            <input name="password" type="password" autocomplete="current-password" required />
-          </label>
-          <button class="checkout-button" type="submit">Sign In</button>
-          <p class="admin-status" id="adminPinStatus" role="status"></p>
-        </form>
-        <div id="adminDashboard" hidden>
-          <section class="admin-section">
-            <h3 id="productFormHeading">Add Product</h3>
-            <form class="admin-form" id="adminProductForm">
-              <input type="hidden" name="productId" />
-              <div class="admin-form-grid">
-                <label>Product name<input name="title" required maxlength="120" /></label>
-                <label>Brand<input name="brand" required maxlength="60" /></label>
-                <label>Category
-                  <select name="category" required>
-                    <option value="Phones">Phones</option>
-                    <option value="Laptops">Laptops</option>
-                    <option value="Mercedes-Benz">Mercedes-Benz</option>
-                    <option value="Toyota">Toyota</option>
-                  </select>
-                </label>
-                <label>Price in Naira<input name="price" type="number" min="1" step="1" required /></label>
-                <label class="admin-field-wide">Specifications<textarea name="specifications" required maxlength="300"></textarea></label>
-                <label>Image URL (optional)<input name="image" type="url" placeholder="https://…" /></label>
-                <label>Or upload an image
-                  <input name="imageUpload" type="file" accept="image/jpeg,image/png,image/webp" />
-                  <span class="admin-image-help">JPEG, PNG, or WebP; maximum 1 MB. Uploaded image takes priority over the URL.</span>
-                  <img class="admin-image-preview" id="adminImagePreview" alt="Product image preview" hidden />
-                </label>
-                <label>Status<input name="status" value="In Stock" required maxlength="40" /></label>
-                <label class="admin-field-wide">Storage options (comma-separated, optional)<input name="storage" placeholder="128GB, 256GB, 512GB" /></label>
-                <label class="admin-field-wide">Price for each storage option (same order, comma-separated)<input name="storagePrices" placeholder="1200000, 1350000, 1600000" /></label>
-              </div>
-              <div class="admin-form-actions">
-                <button class="checkout-button" type="submit">Save Product</button>
-                <button class="admin-secondary-button" id="cancelProductEdit" type="button" hidden>Cancel Edit</button>
-              </div>
-              <p class="admin-status" id="adminProductStatus" role="status"></p>
-            </form>
-          </section>
-          <section class="admin-section">
-            <h3>Manage Products</h3>
-            <div class="admin-list" id="adminProductList"></div>
-          </section>
-          <section class="admin-section">
-            <h3>Delivery Zones &amp; Rates</h3>
-            <form class="admin-form" id="deliveryZoneForm">
-              <div class="admin-form-grid">
-                <label>Location / zone name<input name="name" required maxlength="80" placeholder="e.g. Ikeja" /></label>
-                <label>Delivery fee in Naira<input name="fee" type="number" required min="0" step="1" /></label>
-              </div>
-              <div class="admin-form-actions"><button class="checkout-button" type="submit">Add / Update Zone</button></div>
-              <p class="admin-status" id="deliveryZoneStatus" role="status"></p>
-            </form>
-            <div class="admin-list" id="deliveryZoneList"></div>
-          </section>
-        </div>
-      </div>
-    </section>
-
     <script>
       const phoneImage = "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85";
       const laptopImage = "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=900&q=85";
@@ -2414,7 +2161,6 @@
       const searchInput = document.querySelector("#searchInput");
       const productModal = document.querySelector("#productModal");
       const checkoutModal = document.querySelector("#checkoutModal");
-      const adminModal = document.querySelector("#adminModal");
       const modalBackdrop = document.querySelector("#modalBackdrop");
       const cartDrawer = document.querySelector("#cartDrawer");
       const drawerBackdrop = document.querySelector("#drawerBackdrop");
@@ -2423,7 +2169,6 @@
       const selectedStorage = new Map();
       const formatNaira = (amount) => `₦${new Intl.NumberFormat("en-NG").format(amount)}`;
       const apiBase = window.location.protocol === "file:" ? "http://localhost:3000" : "";
-      let adminToken = "";
       let backendReady = false;
       let activeFilter = "All Curation";
 
@@ -2440,18 +2185,11 @@
       async function apiRequest(path, options = {}) {
         const headers = new Headers(options.headers || {});
         if (options.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
-        if (adminToken) headers.set("Authorization", `Bearer ${adminToken}`);
         const response = await fetch(`${apiBase}${path}`, { ...options, headers });
         if (response.status === 204) return null;
         const result = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(result.error || `Request failed with status ${response.status}.`);
         return result;
-      }
-
-      function showAdminStatus(selector, message, isError = false) {
-        const status = document.querySelector(selector);
-        status.textContent = message;
-        status.classList.toggle("is-error", isError);
       }
 
       function getCuratedProducts() {
@@ -2615,7 +2353,6 @@
             ).join("")}`
           : `<option value="">No delivery zones configured yet</option>`;
         if (deliveryZones.some((zone) => zone.id === previousValue)) deliveryZoneSelect.value = previousValue;
-        renderDeliveryZoneList();
         updateCheckoutSummary();
       }
 
@@ -2650,20 +2387,6 @@
         }
       }
 
-      function renderDeliveryZoneList() {
-        const list = document.querySelector("#deliveryZoneList");
-        list.innerHTML = deliveryZones.length
-          ? deliveryZones.map((zone) => `
-              <article class="delivery-zone-row">
-                <div><strong>${escapeHTML(zone.name)}</strong><small>${formatNaira(zone.fee)} delivery</small></div>
-                <div class="admin-row-actions">
-                  <button type="button" data-delete-zone="${escapeHTML(zone.id)}">Remove</button>
-                </div>
-              </article>
-            `).join("")
-          : `<p class="cart-empty">No delivery zones yet. Add a zone and fee to enable delivery at checkout.</p>`;
-      }
-
       function getSelectedDeliveryZone() {
         const zoneId = document.querySelector("#deliveryZone").value;
         return deliveryZones.find((zone) => zone.id === zoneId);
@@ -2691,75 +2414,6 @@
           `<span>Items: ${formatNaira(getCartSubtotal())}</span><span>${escapeHTML(deliveryDescription)}</span><strong>Total: ${escapeHTML(totalDescription)}</strong>`;
       }
 
-      function readProductImage(file) {
-        if (!file || (!file.name && file.size === 0)) return Promise.resolve("");
-        const supportedTypes = ["image/jpeg", "image/png", "image/webp"];
-        if (!supportedTypes.includes(file.type)) {
-          return Promise.reject(new Error("Choose a JPEG, PNG, or WebP image."));
-        }
-        if (file.size > 1024 * 1024) {
-          return Promise.reject(new Error("Image uploads must be 1 MB or smaller."));
-        }
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.addEventListener("load", () => {
-            if (typeof reader.result !== "string") {
-              reject(new Error("The selected image could not be read."));
-              return;
-            }
-            resolve(reader.result);
-          }, { once: true });
-          reader.addEventListener("error", () => reject(new Error("The selected image could not be read.")), { once: true });
-          reader.readAsDataURL(file);
-        });
-      }
-
-      function setAdminProductForm(product) {
-        const form = document.querySelector("#adminProductForm");
-        const set = (name, value) => { form.elements.namedItem(name).value = value ?? ""; };
-        set("productId", product?.id || "");
-        set("title", product?.title || "");
-        set("brand", product?.brand || "");
-        const category = product?.category === "Cars" ? product.brand : product?.category;
-        set("category", ["Phones", "Laptops", "Mercedes-Benz", "Toyota"].includes(category) ? category : "Phones");
-        set("price", product ? getPrice(product) : "");
-        set("specifications", product?.specifications || "");
-        set("image", product?.image?.startsWith("data:") ? "" : product?.image || "");
-        form.elements.namedItem("imageUpload").value = "";
-        const preview = document.querySelector("#adminImagePreview");
-        preview.src = product?.image || "";
-        preview.hidden = !product?.image;
-        set("status", product?.status || "In Stock");
-        set("storage", product?.storage?.join(", ") || "");
-        set("storagePrices", product?.storage?.map((storage) => getPrice(product, storage)).join(", ") || "");
-        document.querySelector("#productFormHeading").textContent = product ? "Edit Product" : "Add Product";
-        document.querySelector("#cancelProductEdit").hidden = !product;
-        showAdminStatus("#adminProductStatus", "");
-      }
-
-      function renderAdminProductList() {
-        const list = document.querySelector("#adminProductList");
-        list.innerHTML = products.length
-          ? products.map((product) => `
-              <article class="admin-product-row">
-                <div><strong>${escapeHTML(product.title)}</strong><small>${escapeHTML(product.brand)} · ${formatNaira(getPrice(product))}</small></div>
-                <div class="admin-row-actions">
-                  <button type="button" data-edit-product="${escapeHTML(product.id)}">Edit</button>
-                  <button type="button" data-delete-product="${escapeHTML(product.id)}">Delete</button>
-                </div>
-              </article>
-            `).join("")
-          : `<p class="cart-empty">No products in the catalogue.</p>`;
-      }
-
-      function openAdminDashboard() {
-        document.querySelector("#adminPinForm").hidden = false;
-        document.querySelector("#adminDashboard").hidden = true;
-        document.querySelector("#adminPinForm").reset();
-        showAdminStatus("#adminPinStatus", backendReady ? "" : "The backend must be online before you can sign in.", !backendReady);
-        openModal(adminModal);
-      }
-
       function updatePrice(productId) {
         const product = getProduct(productId);
         if (!product) return;
@@ -2775,8 +2429,6 @@
         closeCart();
         productModal.classList.remove("is-open");
         checkoutModal.classList.remove("is-open");
-        adminModal.classList.remove("is-open");
-        adminModal.setAttribute("aria-hidden", "true");
         modal.classList.add("is-open");
         modal.setAttribute("aria-hidden", "false");
         modalBackdrop.classList.add("is-open");
@@ -2786,10 +2438,8 @@
       function closeModal() {
         productModal.classList.remove("is-open");
         checkoutModal.classList.remove("is-open");
-        adminModal.classList.remove("is-open");
         productModal.setAttribute("aria-hidden", "true");
         checkoutModal.setAttribute("aria-hidden", "true");
-        adminModal.setAttribute("aria-hidden", "true");
         modalBackdrop.classList.remove("is-open");
         document.body.style.overflow = "";
       }
@@ -2899,203 +2549,6 @@
         updateCheckoutSummary();
         openModal(checkoutModal);
       }
-
-      document.querySelector("#adminAccess").addEventListener("click", openAdminDashboard);
-      document.querySelector("#adminPinForm").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const form = event.currentTarget;
-        try {
-          const formData = new FormData(form);
-          const result = await apiRequest("/api/admin/login", {
-            method: "POST",
-            body: JSON.stringify({
-              email: String(formData.get("email")).trim(),
-              password: String(formData.get("password")),
-            }),
-          });
-          adminToken = result.token;
-          form.hidden = true;
-          document.querySelector("#adminDashboard").hidden = false;
-          renderAdminProductList();
-          renderDeliveryZones();
-          setAdminProductForm(null);
-          showAdminStatus("#adminPinStatus", "");
-        } catch (error) {
-          showAdminStatus("#adminPinStatus", error.message, true);
-        }
-      });
-
-      document.querySelector("#adminProductForm").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const form = event.currentTarget;
-        const data = new FormData(form);
-        const id = String(data.get("productId") || "");
-        const title = String(data.get("title")).trim();
-        const brand = String(data.get("brand")).trim();
-        const selectedCategory = String(data.get("category"));
-        const price = Number(data.get("price"));
-        const specifications = String(data.get("specifications")).trim();
-        const status = String(data.get("status")).trim();
-        const storage = String(data.get("storage")).split(",").map((item) => item.trim()).filter(Boolean);
-        const storagePrices = String(data.get("storagePrices")).split(",").map((item) => item.trim()).filter(Boolean);
-        const submittedImage = String(data.get("image")).trim();
-        let image = "";
-        try {
-          image = await readProductImage(data.get("imageUpload"));
-        } catch (error) {
-          showAdminStatus("#adminProductStatus", error.message, true);
-          return;
-        }
-        if (!image && submittedImage) {
-          try {
-            const imageUrl = new URL(submittedImage, window.location.href);
-            if (!["http:", "https:"].includes(imageUrl.protocol)) throw new Error("Image URL must use HTTP or HTTPS.");
-            image = imageUrl.href;
-          } catch (error) {
-            showAdminStatus("#adminProductStatus", error.message === "Image URL must use HTTP or HTTPS." ? error.message : "Enter a valid image URL.", true);
-            return;
-          }
-        }
-        if (!title || !brand || !specifications || !status || !Number.isFinite(price) || price <= 0) {
-          showAdminStatus("#adminProductStatus", "Complete all required fields and enter a valid price.", true);
-          return;
-        }
-        if (storage.length !== storagePrices.length && (storage.length || storagePrices.length)) {
-          showAdminStatus("#adminProductStatus", "Enter one price for every storage option, in matching order.", true);
-          return;
-        }
-        if (new Set(storage).size !== storage.length) {
-          showAdminStatus("#adminProductStatus", "Storage options must not contain duplicates.", true);
-          return;
-        }
-        const parsedStoragePrices = storagePrices.map(Number);
-        if (parsedStoragePrices.some((tierPrice) => !Number.isFinite(tierPrice) || tierPrice <= 0)) {
-          showAdminStatus("#adminProductStatus", "Storage prices must be valid amounts greater than zero.", true);
-          return;
-        }
-        const product = id ? getProduct(id) : null;
-        if (id && !product) {
-          showAdminStatus("#adminProductStatus", "That product no longer exists. Refresh the dashboard and try again.", true);
-          return;
-        }
-        const displayCategory = ["Mercedes-Benz", "Toyota"].includes(selectedCategory) ? "Cars" : selectedCategory;
-        const payload = {
-          title,
-          brand,
-          category: displayCategory,
-          price,
-          specifications,
-          image: image || product?.image || (displayCategory === "Phones" ? phoneImage : displayCategory === "Laptops" ? laptopImage : brand === "Toyota" ? toyotaImage : mercedesImage),
-          status,
-          storage: storage.length ? storage : undefined,
-          storagePrices: storage.length ? Object.fromEntries(storage.map((capacity, index) => [capacity, parsedStoragePrices[index]])) : undefined,
-        };
-        try {
-          const savedProduct = await apiRequest(
-            product ? `/api/admin/products/${encodeURIComponent(id)}` : "/api/admin/products",
-            { method: product ? "PUT" : "POST", body: JSON.stringify(payload) }
-          );
-          if (product) {
-            products = products.map((item) => item.id === id ? savedProduct : item);
-          } else {
-            products.push(savedProduct);
-          }
-          renderProducts();
-          renderAdminProductList();
-          setAdminProductForm(null);
-          showAdminStatus("#adminProductStatus", `${savedProduct.title} saved to the shared catalogue.`);
-        } catch (error) {
-          showAdminStatus("#adminProductStatus", error.message, true);
-        }
-      });
-
-      document.querySelector("#adminProductForm").elements.namedItem("imageUpload").addEventListener("change", async (event) => {
-        const input = event.currentTarget;
-        const preview = document.querySelector("#adminImagePreview");
-        try {
-          const image = await readProductImage(input.files[0]);
-          preview.src = image || document.querySelector('#adminProductForm input[name="image"]').value;
-          preview.hidden = !preview.src;
-        } catch (error) {
-          input.value = "";
-          showAdminStatus("#adminProductStatus", error.message, true);
-        }
-      });
-      document.querySelector('#adminProductForm input[name="image"]').addEventListener("input", (event) => {
-        const upload = document.querySelector('#adminProductForm input[name="imageUpload"]');
-        if (upload.files.length) return;
-        const preview = document.querySelector("#adminImagePreview");
-        preview.src = event.currentTarget.value;
-        preview.hidden = !event.currentTarget.value;
-      });
-
-      document.querySelector("#cancelProductEdit").addEventListener("click", () => setAdminProductForm(null));
-      document.querySelector("#adminProductList").addEventListener("click", async (event) => {
-        const editButton = event.target.closest("[data-edit-product]");
-        const deleteButton = event.target.closest("[data-delete-product]");
-        if (editButton) {
-          const product = getProduct(editButton.dataset.editProduct);
-          if (product) {
-            setAdminProductForm(product);
-            document.querySelector("#productFormHeading").scrollIntoView({ block: "nearest", behavior: "smooth" });
-          }
-        }
-        if (deleteButton) {
-          const productId = deleteButton.dataset.deleteProduct;
-          const product = getProduct(productId);
-          if (!product || !window.confirm(`Delete ${product.title} from the catalogue?`)) return;
-          try {
-            await apiRequest(`/api/admin/products/${encodeURIComponent(productId)}`, { method: "DELETE" });
-            products = products.filter((item) => item.id !== productId);
-            [...cart.entries()].forEach(([key, item]) => {
-              if (item.product.id === productId) cart.delete(key);
-            });
-            renderProducts();
-            renderCart();
-            renderAdminProductList();
-            setAdminProductForm(null);
-            showAdminStatus("#adminProductStatus", `${product.title} deleted from the shared catalogue.`);
-          } catch (error) {
-            showAdminStatus("#adminProductStatus", error.message, true);
-          }
-        }
-      });
-
-      document.querySelector("#deliveryZoneForm").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const name = String(data.get("name")).trim();
-        const fee = Number(data.get("fee"));
-        if (!name || !Number.isFinite(fee) || fee < 0) {
-          showAdminStatus("#deliveryZoneStatus", "Enter a location and a valid non-negative delivery fee.", true);
-          return;
-        }
-        try {
-          const savedZone = await apiRequest("/api/admin/delivery-zones", {
-            method: "POST",
-            body: JSON.stringify({ name, fee }),
-          });
-          deliveryZones = [...deliveryZones.filter((zone) => zone.id !== savedZone.id), savedZone];
-          event.currentTarget.reset();
-          renderDeliveryZones();
-          showAdminStatus("#deliveryZoneStatus", `${name} delivery fee saved to the shared settings.`);
-        } catch (error) {
-          showAdminStatus("#deliveryZoneStatus", error.message, true);
-        }
-      });
-
-      document.querySelector("#deliveryZoneList").addEventListener("click", async (event) => {
-        const deleteButton = event.target.closest("[data-delete-zone]");
-        if (!deleteButton) return;
-        try {
-          await apiRequest(`/api/admin/delivery-zones/${encodeURIComponent(deleteButton.dataset.deleteZone)}`, { method: "DELETE" });
-          deliveryZones = deliveryZones.filter((zone) => zone.id !== deleteButton.dataset.deleteZone);
-          renderDeliveryZones();
-          showAdminStatus("#deliveryZoneStatus", "Delivery zone removed from shared settings.");
-        } catch (error) {
-          showAdminStatus("#deliveryZoneStatus", error.message, true);
-        }
-      });
 
       document.querySelector("#fulfillmentMethod").addEventListener("change", updateCheckoutSummary);
       document.querySelector("#deliveryZone").addEventListener("change", () => {
@@ -3253,7 +2706,6 @@
       renderCart();
       renderDeliveryZones();
       loadBackendData();
-      if (window.location.pathname.replace(/\/+$/, "") === "/admin") openAdminDashboard();
     </script>
   </body>
 </html>

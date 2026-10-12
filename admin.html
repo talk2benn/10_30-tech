@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="1030 Tech inventory and delivery settings administration." />
+    <title>Admin | 1030 Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #f5f3ee;
+        --panel: #fffefa;
+        --ink: #252a26;
+        --muted: #727970;
+        --olive: #435443;
+        --olive-dark: #303e32;
+        --line: #dedfd7;
+        --danger: #9c443a;
+        font-family: Inter, system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--paper); color: var(--ink); }
+      a { color: inherit; }
+      button, input, select, textarea { font: inherit; }
+      .topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px clamp(20px, 5vw, 72px); background: var(--olive-dark); color: #fffefa; }
+      .brand { font: 700 34px "Cormorant Garamond", Georgia, serif; letter-spacing: .04em; text-decoration: none; }
+      .topbar small { display: block; color: #d3d8cd; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; }
+      .back-link { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+      main { width: min(1240px, calc(100% - 36px)); margin: 44px auto 80px; }
+      .intro { margin-bottom: 28px; }
+      .eyebrow { color: var(--olive); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+      h1, h2 { margin: 8px 0; font: 600 clamp(30px, 4vw, 48px) "Cormorant Garamond", Georgia, serif; }
+      .intro p, .section-heading p { color: var(--muted); line-height: 1.6; }
+      .panel { padding: clamp(20px, 3vw, 32px); border: 1px solid var(--line); background: var(--panel); box-shadow: 0 18px 55px #2933260b; }
+      .login-panel { max-width: 520px; margin: 38px auto; }
+      .dashboard[hidden], .login-panel[hidden] { display: none; }
+      .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
+      .section-heading h2 { margin-bottom: 0; font-size: 34px; }
+      .dashboard-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, .8fr); gap: 22px; align-items: start; }
+      .stack { display: grid; gap: 22px; }
+      .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+      .field { display: grid; gap: 7px; }
+      .field.full { grid-column: 1 / -1; }
+      label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+      input, select, textarea { width: 100%; min-height: 44px; padding: 11px 12px; border: 1px solid #d7dad1; border-radius: 2px; background: #fff; color: var(--ink); }
+      textarea { min-height: 84px; resize: vertical; }
+      input:focus, select:focus, textarea:focus { outline: 2px solid #9eac9a; outline-offset: 1px; }
+      .hint { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+      .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+      .button { min-height: 42px; padding: 11px 16px; border: 1px solid var(--olive); background: var(--olive); color: white; cursor: pointer; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+      .button:hover { background: var(--olive-dark); }
+      .button.secondary { background: transparent; color: var(--olive); }
+      .button.secondary:hover { background: #edf0e9; }
+      .button.danger { border-color: #ead7d4; background: #fff8f7; color: var(--danger); }
+      .button:disabled { cursor: wait; opacity: .65; }
+      .status { min-height: 20px; margin: 12px 0 0; color: var(--olive); font-size: 12px; line-height: 1.5; }
+      .status.error { color: var(--danger); }
+      .list { display: grid; gap: 8px; margin-top: 16px; }
+      .list-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; border-top: 1px solid var(--line); }
+      .list-row strong, .list-row small { display: block; }
+      .list-row strong { font-size: 13px; }
+      .list-row small { margin-top: 4px; color: var(--muted); font-size: 11px; }
+      .row-actions { display: flex; flex-shrink: 0; gap: 6px; }
+      .row-actions .button { min-height: 34px; padding: 8px 10px; font-size: 10px; }
+      .preview { display: none; width: 96px; height: 72px; margin-top: 9px; border: 1px solid var(--line); object-fit: cover; }
+      .preview.visible { display: block; }
+      .dashboard-toolbar { display: flex; justify-content: flex-end; margin-bottom: 18px; }
+      @media (max-width: 780px) {
+        .dashboard-grid { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 540px) {
+        .topbar { align-items: flex-start; padding: 16px 18px; }
+        .brand { font-size: 29px; }
+        .back-link { max-width: 110px; text-align: right; line-height: 1.5; }
+        main { width: min(100% - 24px, 1240px); margin-top: 30px; }
+        .form-grid { grid-template-columns: 1fr; }
+        .field.full { grid-column: auto; }
+        .section-heading { align-items: flex-start; flex-direction: column; }
+        .list-row { align-items: flex-start; flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">1030 TECH <small>ADMINISTRATION</small></a>
+      <a class="back-link" href="/">Back to storefront</a>
+    </header>
+    <main>
+      <section class="intro">
+        <span class="eyebrow">Private workspace</span>
+        <h1>Admin dashboard</h1>
+        <p>Manage the live product catalogue, product imagery, and checkout delivery fees.</p>
+      </section>
+
+      <section class="panel login-panel" id="loginPanel">
+        <div class="section-heading">
+          <div><span class="eyebrow">Secure sign-in</span><h2>Administrator access</h2></div>
+        </div>
+        <form id="loginForm">
+          <div class="form-grid">
+            <div class="field full"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="username" required /></div>
+            <div class="field full"><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required /></div>
+          </div>
+          <div class="actions"><button class="button" type="submit">Sign in</button></div>
+          <p class="status" id="loginStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="dashboard" id="dashboard" hidden>
+        <div class="dashboard-toolbar"><button class="button secondary" id="signOut" type="button">Sign out</button></div>
+        <div class="dashboard-grid">
+          <section class="panel">
+            <div class="section-heading"><div><span class="eyebrow">Catalogue</span><h2 id="productFormHeading">Add a product</h2><p>Create or update products shown in the storefront.</p></div></div>
+            <form id="productForm">
+              <input type="hidden" name="productId" />
+              <div class="form-grid">
+                <div class="field"><label for="productTitle">Product name</label><input id="productTitle" name="title" maxlength="120" required /></div>
+                <div class="field"><label for="brand">Brand</label><input id="brand" name="brand" maxlength="60" placeholder="Apple, HP, Toyota..." required /></div>
+                <div class="field"><label for="category">Category</label><select id="category" name="category" required><option value="Phones">Phones</option><option value="Laptops">Laptops</option><option value="Cars">Cars</option></select></div>
+                <div class="field"><label for="price">Base price (₦)</label><input id="price" name="price" type="number" min="1" step="1" required /></div>
+                <div class="field full"><label for="specifications">Specifications</label><textarea id="specifications" name="specifications" maxlength="300" required></textarea></div>
+                <div class="field"><label for="status">Availability</label><input id="status" name="status" maxlength="40" value="Available" required /></div>
+                <div class="field"><label for="imageUpload">Upload image</label><input id="imageUpload" name="imageUpload" type="file" accept="image/jpeg,image/png,image/webp" /><p class="hint">JPEG, PNG, or WebP; up to 1 MB.</p></div>
+                <div class="field full"><label for="imageUrl">Or image URL</label><input id="imageUrl" name="image" type="url" placeholder="https://..." /><img class="preview" id="imagePreview" alt="Selected product image preview" /></div>
+                <div class="field"><label for="storage">Storage options</label><input id="storage" name="storage" placeholder="128GB, 256GB, 512GB" /><p class="hint">Optional; enter comma-separated capacities.</p></div>
+                <div class="field"><label for="storagePrices">Storage prices (₦)</label><input id="storagePrices" name="storagePrices" placeholder="1100000, 1250000, 1450000" /><p class="hint">Enter one price per capacity, in the same order.</p></div>
+              </div>
+              <div class="actions"><button class="button" id="saveProduct" type="submit">Save product</button><button class="button secondary" id="cancelEdit" type="button" hidden>Cancel edit</button></div>
+              <p class="status" id="productStatus" role="status" aria-live="polite"></p>
+            </form>
+            <div class="section-heading"><div><h2>Current products</h2><p id="productCount">Loading catalogue...</p></div></div>
+            <div class="list" id="productList"></div>
+          </section>
+
+          <div class="stack">
+            <section class="panel">
+              <div class="section-heading"><div><span class="eyebrow">Fulfilment</span><h2>Delivery zones</h2><p>Set the delivery fees customers see at checkout.</p></div></div>
+              <form id="zoneForm">
+                <div class="form-grid">
+                  <div class="field full"><label for="zoneName">Zone name</label><input id="zoneName" name="name" maxlength="80" required /></div>
+                  <div class="field full"><label for="zoneFee">Delivery fee (₦)</label><input id="zoneFee" name="fee" type="number" min="0" step="1" required /></div>
+                </div>
+                <div class="actions"><button class="button" type="submit">Save zone</button></div>
+                <p class="hint">Saving an existing zone name updates its current fee.</p>
+                <p class="status" id="zoneStatus" role="status" aria-live="polite"></p>
+              </form>
+              <div class="list" id="zoneList"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      "use strict";
+      const apiBase = window.location.protocol === "file:" ? "http://localhost:3000" : "";
+      let adminToken = "";
+      let products = [];
+      let zones = [];
+      let uploadedImage = "";
+      const formatNaira = (amount) => `₦${new Intl.NumberFormat("en-NG").format(amount)}`;
+      const escapeHTML = (value) => String(value ?? "").replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+      })[character]);
+
+      function setStatus(id, message, isError = false) {
+        const status = document.querySelector(`#${id}`);
+        status.textContent = message;
+        status.classList.toggle("error", isError);
+      }
+
+      async function request(path, options = {}) {
+        const headers = new Headers(options.headers || {});
+        if (options.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
+        if (adminToken) headers.set("Authorization", `Bearer ${adminToken}`);
+        const response = await fetch(`${apiBase}${path}`, { ...options, headers });
+        if (response.status === 204) return null;
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.error || `Request failed with status ${response.status}.`);
+        return result;
+      }
+
+      function priceFor(product) {
+        if (product.storagePrices && product.storage?.length) {
+          return Math.min(...product.storage.map((capacity) => Number(product.storagePrices[capacity])));
+        }
+        return Number(product.price);
+      }
+
+      function renderProducts() {
+        document.querySelector("#productCount").textContent = `${products.length} product${products.length === 1 ? "" : "s"} in the shared catalogue.`;
+        document.querySelector("#productList").innerHTML = products.length
+          ? products.map((product) => `
+              <article class="list-row">
+                <div><strong>${escapeHTML(product.title)}</strong><small>${escapeHTML(product.brand)} · ${formatNaira(priceFor(product))}${product.storage?.length ? ` · ${escapeHTML(product.storage.join(", "))}` : ""}</small></div>
+                <div class="row-actions"><button class="button secondary" type="button" data-edit="${escapeHTML(product.id)}">Edit</button><button class="button danger" type="button" data-delete="${escapeHTML(product.id)}">Delete</button></div>
+              </article>`).join("")
+          : '<p class="hint">There are no products in the catalogue.</p>';
+      }
+
+      function renderZones() {
+        document.querySelector("#zoneList").innerHTML = zones.length
+          ? zones.map((zone) => `
+              <article class="list-row">
+                <div><strong>${escapeHTML(zone.name)}</strong><small>${formatNaira(zone.fee)} delivery</small></div>
+                <div class="row-actions"><button class="button danger" type="button" data-delete-zone="${escapeHTML(zone.id)}">Remove</button></div>
+              </article>`).join("")
+          : '<p class="hint">No delivery zones are configured.</p>';
+      }
+
+      function resetProductForm() {
+        const form = document.querySelector("#productForm");
+        form.reset();
+        form.elements.namedItem("productId").value = "";
+        form.elements.namedItem("status").value = "Available";
+        uploadedImage = "";
+        const preview = document.querySelector("#imagePreview");
+        preview.removeAttribute("src");
+        preview.classList.remove("visible");
+        document.querySelector("#productFormHeading").textContent = "Add a product";
+        document.querySelector("#saveProduct").textContent = "Save product";
+        document.querySelector("#cancelEdit").hidden = true;
+      }
+
+      function beginEdit(product) {
+        const form = document.querySelector("#productForm");
+        const values = {
+          productId: product.id,
+          title: product.title,
+          brand: product.brand,
+          category: product.category,
+          price: product.price,
+          specifications: product.specifications,
+          status: product.status,
+          image: product.image?.startsWith("data:") ? "" : product.image || "",
+          storage: product.storage?.join(", ") || "",
+          storagePrices: product.storage?.map((capacity) => product.storagePrices[capacity]).join(", ") || "",
+        };
+        for (const [name, value] of Object.entries(values)) form.elements.namedItem(name).value = value;
+        uploadedImage = product.image?.startsWith("data:") ? product.image : "";
+        showPreview(uploadedImage || values.image);
+        document.querySelector("#productFormHeading").textContent = "Edit product";
+        document.querySelector("#saveProduct").textContent = "Update product";
+        document.querySelector("#cancelEdit").hidden = false;
+        document.querySelector("#productFormHeading").scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      function showPreview(source) {
+        const preview = document.querySelector("#imagePreview");
+        if (source) {
+          preview.src = source;
+          preview.classList.add("visible");
+        } else {
+          preview.removeAttribute("src");
+          preview.classList.remove("visible");
+        }
+      }
+
+      async function loadDashboardData() {
+        try {
+          [products, zones] = await Promise.all([request("/api/products"), request("/api/delivery-zones")]);
+          renderProducts();
+          renderZones();
+        } catch (error) {
+          setStatus("productStatus", `Could not load dashboard data: ${error.message}`, true);
+        }
+      }
+
+      document.querySelector("#loginForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const submit = form.querySelector('button[type="submit"]');
+        submit.disabled = true;
+        setStatus("loginStatus", "");
+        try {
+          const data = new FormData(form);
+          const result = await request("/api/admin/login", {
+            method: "POST",
+            body: JSON.stringify({ email: String(data.get("email")).trim(), password: String(data.get("password")) }),
+          });
+          adminToken = result.token;
+          form.reset();
+          document.querySelector("#loginPanel").hidden = true;
+          document.querySelector("#dashboard").hidden = false;
+          await loadDashboardData();
+        } catch (error) {
+          setStatus("loginStatus", error.message, true);
+        } finally {
+          submit.disabled = false;
+        }
+      });
+
+      document.querySelector("#signOut").addEventListener("click", () => {
+        adminToken = "";
+        products = [];
+        zones = [];
+        document.querySelector("#dashboard").hidden = true;
+        document.querySelector("#loginPanel").hidden = false;
+        setStatus("loginStatus", "You have signed out.");
+      });
+
+      document.querySelector("#productForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const submit = document.querySelector("#saveProduct");
+        submit.disabled = true;
+        setStatus("productStatus", "");
+        try {
+          const data = new FormData(form);
+          const id = String(data.get("productId") || "");
+          const storage = String(data.get("storage")).split(",").map((entry) => entry.trim()).filter(Boolean);
+          const priceEntries = String(data.get("storagePrices")).split(",").map((entry) => entry.trim()).filter(Boolean);
+          if (storage.length !== priceEntries.length) throw new Error("Enter one price for every storage option, in the same order.");
+          if (new Set(storage).size !== storage.length) throw new Error("Storage options must not contain duplicates.");
+          const storagePrices = Object.fromEntries(storage.map((capacity, index) => [capacity, Number(priceEntries[index])]));
+          if (Object.values(storagePrices).some((price) => !Number.isSafeInteger(price) || price < 1)) {
+            throw new Error("Storage prices must be positive whole-naira amounts.");
+          }
+          const product = products.find((item) => item.id === id);
+          const image = uploadedImage || String(data.get("image")).trim() || (product?.image?.startsWith("data:") ? product.image : undefined);
+          const payload = {
+            title: String(data.get("title")).trim(),
+            brand: String(data.get("brand")).trim(),
+            category: String(data.get("category")),
+            price: Number(data.get("price")),
+            specifications: String(data.get("specifications")).trim(),
+            status: String(data.get("status")).trim(),
+            ...(image ? { image } : {}),
+            ...(storage.length ? { storage, storagePrices } : {}),
+          };
+          if (product && !storage.length) {
+            delete payload.storage;
+            delete payload.storagePrices;
+          }
+          const saved = await request(product ? `/api/admin/products/${encodeURIComponent(id)}` : "/api/admin/products", {
+            method: product ? "PUT" : "POST",
+            body: JSON.stringify(payload),
+          });
+          products = product ? products.map((item) => item.id === id ? saved : item) : [...products, saved];
+          renderProducts();
+          resetProductForm();
+          setStatus("productStatus", `${saved.title} saved to the shared catalogue.`);
+        } catch (error) {
+          setStatus("productStatus", error.message, true);
+        } finally {
+          submit.disabled = false;
+        }
+      });
+
+      document.querySelector("#imageUpload").addEventListener("change", async (event) => {
+        const input = event.currentTarget;
+        const file = input.files[0];
+        if (!file) {
+          uploadedImage = "";
+          return;
+        }
+        if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+          input.value = "";
+          setStatus("productStatus", "Choose a JPEG, PNG, or WebP image.", true);
+          return;
+        }
+        if (file.size > 1024 * 1024) {
+          input.value = "";
+          setStatus("productStatus", "Image uploads must be 1 MB or smaller.", true);
+          return;
+        }
+        try {
+          uploadedImage = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.addEventListener("load", () => typeof reader.result === "string" ? resolve(reader.result) : reject(new Error("The selected image could not be read.")), { once: true });
+            reader.addEventListener("error", () => reject(new Error("The selected image could not be read.")), { once: true });
+            reader.readAsDataURL(file);
+          });
+          document.querySelector("#imageUrl").value = "";
+          showPreview(uploadedImage);
+          setStatus("productStatus", "Image ready to upload with the product.");
+        } catch (error) {
+          uploadedImage = "";
+          input.value = "";
+          setStatus("productStatus", error.message, true);
+        }
+      });
+
+      document.querySelector("#imageUrl").addEventListener("input", (event) => {
+        if (event.currentTarget.value && uploadedImage) {
+          uploadedImage = "";
+          document.querySelector("#imageUpload").value = "";
+        }
+        showPreview(event.currentTarget.value);
+      });
+      document.querySelector("#productList").addEventListener("click", async (event) => {
+        const edit = event.target.closest("[data-edit]");
+        if (edit) {
+          const product = products.find((item) => item.id === edit.dataset.edit);
+          if (product) beginEdit(product);
+          return;
+        }
+        const remove = event.target.closest("[data-delete]");
+        if (!remove) return;
+        const product = products.find((item) => item.id === remove.dataset.delete);
+        if (!product || !window.confirm(`Delete ${product.title} from the catalogue?`)) return;
+        try {
+          await request(`/api/admin/products/${encodeURIComponent(product.id)}`, { method: "DELETE" });
+          products = products.filter((item) => item.id !== product.id);
+          renderProducts();
+          if (document.querySelector("#productForm").elements.namedItem("productId").value === product.id) resetProductForm();
+          setStatus("productStatus", `${product.title} deleted from the catalogue.`);
+        } catch (error) {
+          setStatus("productStatus", error.message, true);
+        }
+      });
+
+      document.querySelector("#cancelEdit").addEventListener("click", resetProductForm);
+      document.querySelector("#zoneForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const data = new FormData(form);
+        try {
+          const saved = await request("/api/admin/delivery-zones", {
+            method: "POST",
+            body: JSON.stringify({ name: String(data.get("name")).trim(), fee: Number(data.get("fee")) }),
+          });
+          zones = [...zones.filter((zone) => zone.id !== saved.id), saved].sort((a, b) => a.name.localeCompare(b.name));
+          form.reset();
+          renderZones();
+          setStatus("zoneStatus", `${saved.name} delivery fee saved.`);
+        } catch (error) {
+          setStatus("zoneStatus", error.message, true);
+        }
+      });
+      document.querySelector("#zoneList").addEventListener("click", async (event) => {
+        const remove = event.target.closest("[data-delete-zone]");
+        if (!remove) return;
+        const zone = zones.find((item) => item.id === remove.dataset.deleteZone);
+        if (!zone || !window.confirm(`Remove ${zone.name}?`)) return;
+        try {
+          await request(`/api/admin/delivery-zones/${encodeURIComponent(zone.id)}`, { method: "DELETE" });
+          zones = zones.filter((item) => item.id !== zone.id);
+          renderZones();
+          setStatus("zoneStatus", `${zone.name} removed.`);
+        } catch (error) {
+          setStatus("zoneStatus", error.message, true);
+        }
+      });
+    </script>
+  </body>
+</html>

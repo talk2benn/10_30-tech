@@ -522,7 +522,8 @@ app.post("/api/orders", orderLimiter, async (req, res, next) => {
   }
 });
 
-app.get(["/", "/admin"], (_req, res) => res.sendFile(path.join(__dirname, "..", "index.html")));
+app.get("/", (_req, res) => res.sendFile(path.join(__dirname, "..", "index.html")));
+app.get("/admin", (_req, res) => res.sendFile(path.join(__dirname, "..", "admin.html")));
 app.use((req, res) => apiError(res, 404, `Route not found: ${req.method} ${req.path}`));
 app.use((error, _req, res, _next) => {
   console.error("Request failed:", error);
