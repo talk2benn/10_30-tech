@@ -2857,8 +2857,9 @@
       document.querySelector("#adminAccess").addEventListener("click", openAdminDashboard);
       document.querySelector("#adminPinForm").addEventListener("submit", async (event) => {
         event.preventDefault();
+        const form = event.currentTarget;
         try {
-          const formData = new FormData(event.currentTarget);
+          const formData = new FormData(form);
           const result = await apiRequest("/api/admin/login", {
             method: "POST",
             body: JSON.stringify({
@@ -2867,7 +2868,7 @@
             }),
           });
           adminToken = result.token;
-          event.currentTarget.hidden = true;
+          form.hidden = true;
           document.querySelector("#adminDashboard").hidden = false;
           renderAdminProductList();
           renderDeliveryZones();
@@ -3101,18 +3102,19 @@
       document.querySelector("#checkoutButton").addEventListener("click", startCheckout);
       document.querySelector("#checkoutForm").addEventListener("submit", async (event) => {
         event.preventDefault();
+        const form = event.currentTarget;
         if (!backendReady) {
           setBackendStatus("Checkout needs the backend connection so your order can be validated and saved.");
           return;
         }
-        const formData = new FormData(event.currentTarget);
+        const formData = new FormData(form);
         const name = String(formData.get("name")).trim();
         const address = String(formData.get("address")).trim();
         const phone = String(formData.get("phone")).trim();
         const fulfillment = String(formData.get("fulfillment"));
         const zone = fulfillment === "delivery" ? getSelectedDeliveryZone() : null;
         if (!name || !phone || cart.size === 0 || (fulfillment === "delivery" && (!address || !zone))) {
-          event.currentTarget.reportValidity();
+          form.reportValidity();
           if (fulfillment === "delivery" && !zone) {
             document.querySelector("#deliveryZone").setCustomValidity("Choose a configured delivery zone.");
             document.querySelector("#deliveryZone").reportValidity();
@@ -3121,7 +3123,7 @@
         }
         document.querySelector("#deliveryZone").setCustomValidity("");
         const confirmation = document.querySelector("#confirmationMessage");
-        const submitButton = event.currentTarget.querySelector('[type="submit"]');
+        const submitButton = form.querySelector('[type="submit"]');
         submitButton.disabled = true;
         confirmation.textContent = "Saving your order…";
         confirmation.classList.add("is-visible");
@@ -3157,7 +3159,7 @@
           whatsappLink.rel = "noopener noreferrer";
           whatsappLink.textContent = "Open WhatsApp to send your order";
           confirmation.append(whatsappLink, ".");
-          event.currentTarget.hidden = true;
+          form.hidden = true;
           cart.clear();
           renderCart();
         } catch (error) {
