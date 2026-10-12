@@ -26,6 +26,7 @@ const app = express();
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const port = Number(process.env.PORT) || 3000;
 const jwtSecret = process.env.JWT_SECRET;
+const maxProductImageBytes = 1024 * 1024;
 const seedProducts = JSON.parse(fs.readFileSync(path.join(__dirname, "seed-products.json"), "utf8"));
 const defaultDeliveryZones = [
   {
@@ -83,7 +84,7 @@ app.use(helmet({
     },
   },
 }));
-app.use(express.json({ limit: "64kb" }));
+app.use(express.json({ limit: "2mb" }));
 
 function apiError(res, status, message) {
   return res.status(status).json({ error: message });
@@ -132,12 +133,27 @@ function validateProduct(input) {
 
   let image = typeof input.image === "string" ? input.image.trim() : "";
   if (image) {
-    try {
-      const imageUrl = new URL(image);
-      if (!["https:", "http:"].includes(imageUrl.protocol)) throw new Error();
-      image = imageUrl.href;
-    } catch {
-      return { error: "Image must be a valid HTTP or HTTPS URL." };
+    if (image.startsWith("data:")) {
+      const match = image.match(/^data:image\/(jpeg|png|webp);base64,([A-Za-z0-9+/]+={0,2})$/);
+      if (!match) return { error: "Uploaded images must be valid JPEG, PNG, or WebP files." };
+      const bytes = Buffer.from(match[2], "base64");
+      if (bytes.length > maxProductImageBytes || bytes.toString("base64") !== match[2]) {
+        return { error: "Uploaded images must be 1 MB or smaller." };
+      }
+      const validSignature = match[1] === "jpeg"
+        ? bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff
+        : match[1] === "png"
+          ? bytes.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))
+          : bytes.length >= 12 && bytes.toString("ascii", 0, 4) === "RIFF" && bytes.toString("ascii", 8, 12) === "WEBP";
+      if (!validSignature) return { error: "The uploaded file contents do not match a supported image format." };
+    } else {
+      try {
+        const imageUrl = new URL(image);
+        if (!["https:", "http:"].includes(imageUrl.protocol)) throw new Error();
+        image = imageUrl.href;
+      } catch {
+        return { error: "Image must be a valid HTTP or HTTPS URL." };
+      }
     }
   }
 
@@ -511,6 +527,8 @@ app.use((req, res) => apiError(res, 404, `Route not found: ${req.method} ${req.p
 app.use((error, _req, res, _next) => {
   console.error("Request failed:", error);
   if (res.headersSent) return;
+  if (error.type === "entity.too.large") return apiError(res, 413, "Request is too large. Product image uploads must be 1 MB or smaller.");
+  if (error.status === 400) return apiError(res, 400, "Request body must contain valid JSON.");
   return apiError(res, 500, "The request could not be completed.");
 });
 

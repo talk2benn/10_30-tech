@@ -24,6 +24,8 @@ Requirements: Node.js 20+ and PostgreSQL.
 
 The admin sign-in uses the credentials configured in `.env`; there is no client-side PIN. The JWT is kept in memory by the browser and expires after two hours. Never commit `.env` or production secrets.
 
+Admins can provide a product image by entering an HTTP(S) image URL or uploading a JPEG, PNG, or WebP image up to 1 MB. Uploaded image data is stored with the product in PostgreSQL (not on the web service's temporary filesystem), so it remains available after redeploys. Keep uploads optimized because image data counts toward the database's storage limit.
+
 ## Deploy with Render
 
 1. Push this repository to GitHub.

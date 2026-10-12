@@ -1290,6 +1290,20 @@
         resize: vertical;
       }
 
+      .admin-image-preview {
+        width: 112px;
+        height: 112px;
+        margin-top: 10px;
+        border: 1px solid rgba(17, 17, 17, 0.15);
+        object-fit: cover;
+      }
+
+      .admin-image-help {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
       .admin-field-wide {
         grid-column: 1 / -1;
       }
@@ -2288,7 +2302,12 @@
                 </label>
                 <label>Price in Naira<input name="price" type="number" min="1" step="1" required /></label>
                 <label class="admin-field-wide">Specifications<textarea name="specifications" required maxlength="300"></textarea></label>
-                <label>Image URL<input name="image" type="url" placeholder="https://…" /></label>
+                <label>Image URL (optional)<input name="image" type="url" placeholder="https://…" /></label>
+                <label>Or upload an image
+                  <input name="imageUpload" type="file" accept="image/jpeg,image/png,image/webp" />
+                  <span class="admin-image-help">JPEG, PNG, or WebP; maximum 1 MB. Uploaded image takes priority over the URL.</span>
+                  <img class="admin-image-preview" id="adminImagePreview" alt="Product image preview" hidden />
+                </label>
                 <label>Status<input name="status" value="In Stock" required maxlength="40" /></label>
                 <label class="admin-field-wide">Storage options (comma-separated, optional)<input name="storage" placeholder="128GB, 256GB, 512GB" /></label>
                 <label class="admin-field-wide">Price for each storage option (same order, comma-separated)<input name="storagePrices" placeholder="1200000, 1350000, 1600000" /></label>
@@ -2672,6 +2691,29 @@
           `<span>Items: ${formatNaira(getCartSubtotal())}</span><span>${escapeHTML(deliveryDescription)}</span><strong>Total: ${escapeHTML(totalDescription)}</strong>`;
       }
 
+      function readProductImage(file) {
+        if (!file || (!file.name && file.size === 0)) return Promise.resolve("");
+        const supportedTypes = ["image/jpeg", "image/png", "image/webp"];
+        if (!supportedTypes.includes(file.type)) {
+          return Promise.reject(new Error("Choose a JPEG, PNG, or WebP image."));
+        }
+        if (file.size > 1024 * 1024) {
+          return Promise.reject(new Error("Image uploads must be 1 MB or smaller."));
+        }
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.addEventListener("load", () => {
+            if (typeof reader.result !== "string") {
+              reject(new Error("The selected image could not be read."));
+              return;
+            }
+            resolve(reader.result);
+          }, { once: true });
+          reader.addEventListener("error", () => reject(new Error("The selected image could not be read.")), { once: true });
+          reader.readAsDataURL(file);
+        });
+      }
+
       function setAdminProductForm(product) {
         const form = document.querySelector("#adminProductForm");
         const set = (name, value) => { form.elements.namedItem(name).value = value ?? ""; };
@@ -2682,7 +2724,11 @@
         set("category", ["Phones", "Laptops", "Mercedes-Benz", "Toyota"].includes(category) ? category : "Phones");
         set("price", product ? getPrice(product) : "");
         set("specifications", product?.specifications || "");
-        set("image", product?.image || "");
+        set("image", product?.image?.startsWith("data:") ? "" : product?.image || "");
+        form.elements.namedItem("imageUpload").value = "";
+        const preview = document.querySelector("#adminImagePreview");
+        preview.src = product?.image || "";
+        preview.hidden = !product?.image;
         set("status", product?.status || "In Stock");
         set("storage", product?.storage?.join(", ") || "");
         set("storagePrices", product?.storage?.map((storage) => getPrice(product, storage)).join(", ") || "");
@@ -2893,10 +2939,16 @@
         const storage = String(data.get("storage")).split(",").map((item) => item.trim()).filter(Boolean);
         const storagePrices = String(data.get("storagePrices")).split(",").map((item) => item.trim()).filter(Boolean);
         const submittedImage = String(data.get("image")).trim();
-        let image = submittedImage;
-        if (image) {
+        let image = "";
+        try {
+          image = await readProductImage(data.get("imageUpload"));
+        } catch (error) {
+          showAdminStatus("#adminProductStatus", error.message, true);
+          return;
+        }
+        if (!image && submittedImage) {
           try {
-            const imageUrl = new URL(image, window.location.href);
+            const imageUrl = new URL(submittedImage, window.location.href);
             if (!["http:", "https:"].includes(imageUrl.protocol)) throw new Error("Image URL must use HTTP or HTTPS.");
             image = imageUrl.href;
           } catch (error) {
@@ -2955,6 +3007,26 @@
         } catch (error) {
           showAdminStatus("#adminProductStatus", error.message, true);
         }
+      });
+
+      document.querySelector("#adminProductForm").elements.namedItem("imageUpload").addEventListener("change", async (event) => {
+        const input = event.currentTarget;
+        const preview = document.querySelector("#adminImagePreview");
+        try {
+          const image = await readProductImage(input.files[0]);
+          preview.src = image || document.querySelector('#adminProductForm input[name="image"]').value;
+          preview.hidden = !preview.src;
+        } catch (error) {
+          input.value = "";
+          showAdminStatus("#adminProductStatus", error.message, true);
+        }
+      });
+      document.querySelector('#adminProductForm input[name="image"]').addEventListener("input", (event) => {
+        const upload = document.querySelector('#adminProductForm input[name="imageUpload"]');
+        if (upload.files.length) return;
+        const preview = document.querySelector("#adminImagePreview");
+        preview.src = event.currentTarget.value;
+        preview.hidden = !event.currentTarget.value;
       });
 
       document.querySelector("#cancelProductEdit").addEventListener("click", () => setAdminProductForm(null));
