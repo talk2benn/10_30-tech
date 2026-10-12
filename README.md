@@ -24,7 +24,7 @@ Requirements: Node.js 20+ and PostgreSQL.
 
 Open the dedicated admin dashboard at `http://localhost:3000/admin` (or append `/admin` to your deployed site). Sign in with the credentials configured in `.env`; there is no client-side PIN. The JWT is kept in memory by the browser and expires after two hours. Never commit `.env` or production secrets.
 
-Admins can provide a product image by entering an HTTP(S) image URL or uploading a JPEG, PNG, or WebP image up to 1 MB. A second image URL is available for an alternate view, including front/back phone photos. Uploaded image data is stored with the product in PostgreSQL (not on the web service's temporary filesystem), so it remains available after redeploys. Keep uploads optimized because image data counts toward the database's storage limit.
+Admins can provide a product image by entering an HTTP(S) image URL or uploading a JPEG, PNG, or WebP image up to 1 MB. A second image URL is available for an alternate view, including front/back phone photos; alternate views display without front/back caption tags. Uploaded image data is stored with the product in PostgreSQL (not on the web service's temporary filesystem), so it remains available after redeploys. Keep uploads optimized because image data counts toward the database's storage limit.
 
 The catalogue uses model-specific Wikimedia Commons imagery where available, with representative images identified as such and source links shown on the storefront. The server updates only products still using the old shared Unsplash placeholders; product images already customized by an admin are preserved.
 

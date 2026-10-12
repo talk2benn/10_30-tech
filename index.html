@@ -550,21 +550,6 @@
         background: #f1f0eb;
       }
 
-      .product-image-view figcaption {
-        position: absolute;
-        right: 7px;
-        bottom: 7px;
-        left: 7px;
-        z-index: 1;
-        color: #fff;
-        font-size: 9px;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-align: center;
-        text-shadow: 0 1px 4px #000;
-        text-transform: uppercase;
-      }
-
       .image-attribution {
         margin: 8px 16px 0;
         color: var(--muted);
@@ -2256,20 +2241,15 @@
       }
 
       function getProductImageViews(product) {
-        const images = [product.image, product.imageBack].filter(Boolean);
-        return images.map((image, index) => ({
-          image,
-          label: product.category === "Phones" ? (index === 0 ? "Front" : "Back") : (index === 0 ? "Product view" : "Second view"),
-        }));
+        return [product.image, product.imageBack].filter(Boolean);
       }
 
       function renderProductImageGallery(product, className) {
         const views = getProductImageViews(product);
         return `<div class="${className}${views.length > 1 ? " has-views" : ""}">
-          ${views.map(({ image, label }) => `
+          ${views.map((image, index) => `
             <figure class="product-image-view">
-              <img src="${escapeHTML(image)}" alt="${escapeHTML(`${label} view of ${product.title}`)}" loading="lazy" />
-              ${views.length > 1 ? `<figcaption>${label}</figcaption>` : ""}
+              <img src="${escapeHTML(image)}" alt="${escapeHTML(`${product.title} product image ${index + 1}`)}" loading="lazy" />
             </figure>
           `).join("")}
           ${className === "product-image" ? `<span class="product-status">${escapeHTML(product.status)}</span>` : ""}
