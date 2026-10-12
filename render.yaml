@@ -23,5 +23,5 @@ services:
 databases:
   - name: 1030-tech-db
     plan: basic-256mb
-    databaseName: 1030tech
-    user: 1030tech
+    databaseName: tech1030
+    user: tech1030
