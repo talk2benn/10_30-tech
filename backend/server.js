@@ -27,6 +27,20 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const port = Number(process.env.PORT) || 3000;
 const jwtSecret = process.env.JWT_SECRET;
 const seedProducts = JSON.parse(fs.readFileSync(path.join(__dirname, "seed-products.json"), "utf8"));
+const defaultDeliveryZones = [
+  {
+    name: "Zone 1 - Mainland: Ikeja, Yaba, Surulere, Lagos Island (₦2k-₦3k)",
+    fee: 2500,
+  },
+  {
+    name: "Zone 2 - Far Lagos: Ajah, Ikorodu, Badagry, Epe (₦4k-₦5k)",
+    fee: 4500,
+  },
+  {
+    name: "Zone 3 - Outside Lagos: Abuja, PH, Ibadan (DHL/GIG; ₦5k-₦7k)",
+    fee: 6000,
+  },
+];
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 10,
@@ -225,6 +239,14 @@ async function initializeDatabase() {
      ON CONFLICT (email) DO UPDATE SET password_hash = EXCLUDED.password_hash, updated_at = NOW()`,
     [configuredEmail, passwordHash]
   );
+
+  for (const zone of defaultDeliveryZones) {
+    await pool.query(
+      `INSERT INTO delivery_zones (id, name, fee) VALUES ($1, $2, $3)
+       ON CONFLICT (LOWER(name)) DO NOTHING`,
+      [randomUUID(), zone.name, zone.fee]
+    );
+  }
 
   const { rows } = await pool.query("SELECT COUNT(*)::int AS count FROM products");
   if (rows[0].count === 0) {

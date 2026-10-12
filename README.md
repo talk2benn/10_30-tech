@@ -15,7 +15,12 @@ Requirements: Node.js 20+ and PostgreSQL.
    npm start
    ```
 
-4. Open `http://localhost:3000`. The service initializes its tables and imports the 53-product catalogue the first time it starts against an empty database.
+4. Open `http://localhost:3000`. The service initializes its tables, imports the 53-product catalogue when the database is empty, and adds the three default delivery zones if they are not already configured:
+   - Mainland / close (Ikeja, Yaba, Surulere, Lagos Island): ₦2,500 midpoint fare (range ₦2,000–₦3,000).
+   - Far Lagos (Ajah, Ikorodu, Badagry, Epe): ₦4,500 midpoint fare (range ₦4,000–₦5,000).
+   - Outside Lagos (Abuja, PH, Ibadan; DHL/GIG): ₦6,000 midpoint fare (range ₦5,000–₦7,000).
+
+   Existing fees for matching zone names are preserved. Admins can adjust fees in the dashboard.
 
 The admin sign-in uses the credentials configured in `.env`; there is no client-side PIN. The JWT is kept in memory by the browser and expires after two hours. Never commit `.env` or production secrets.
 
