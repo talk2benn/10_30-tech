@@ -27,13 +27,13 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const port = Number(process.env.PORT) || 3000;
 const jwtSecret = process.env.JWT_SECRET;
 const maxProductImageBytes = 1024 * 1024;
-const legacyPlaceholderImages = [
-  "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
-  "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=900&q=85",
-  "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
-  "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
-];
 const productImageFiles = JSON.parse(fs.readFileSync(path.join(__dirname, "product-image-map.json"), "utf8"));
+const originalProductImages = {
+  phone: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+  laptop: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=900&q=85",
+  mercedes: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
+  toyota: "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+};
 
 function commonsImageUrl(file) {
   return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=900`;
@@ -43,18 +43,17 @@ function commonsFileUrl(file) {
   return `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file).replace(/%20/g, "_")}`;
 }
 
+function originalProductImage(product) {
+  if (product.category === "Phones") return originalProductImages.phone;
+  if (product.category === "Laptops") return originalProductImages.laptop;
+  return product.brand === "Mercedes-Benz" ? originalProductImages.mercedes : originalProductImages.toyota;
+}
+
 const seedProducts = JSON.parse(fs.readFileSync(path.join(__dirname, "seed-products.json"), "utf8"))
-  .map((product) => {
-    const files = productImageFiles[product.id];
-    if (!files) return product;
-    return {
-      ...product,
-      image: commonsImageUrl(files.front),
-      ...(files.back ? { imageBack: commonsImageUrl(files.back) } : {}),
-      imageSource: commonsFileUrl(files.front),
-      ...(files.back ? { imageBackSource: commonsFileUrl(files.back) } : {}),
-    };
-  });
+  .map((product) => ({
+    ...product,
+    image: originalProductImage(product),
+  }));
 const defaultDeliveryZones = [
   {
     name: "Zone 1 - Mainland: Ikeja, Yaba, Surulere, Lagos Island (₦2k-₦3k)",
@@ -327,18 +326,35 @@ async function initializeDatabase() {
   }
 
   for (const product of seedProducts) {
-    if (!product.imageSource) continue;
-    const defaultImages = {
-      image: product.image,
-      imageSource: product.imageSource,
-      ...(product.imageBack ? { imageBack: product.imageBack } : {}),
-      ...(product.imageBackSource ? { imageBackSource: product.imageBackSource } : {}),
-    };
+    const files = productImageFiles[product.id];
+    if (!files) continue;
+    const previousImage = commonsImageUrl(files.front);
+    const previousImageSource = commonsFileUrl(files.front);
+    const previousBackImage = files.back ? commonsImageUrl(files.back) : null;
+    const previousBackImageSource = files.back ? commonsFileUrl(files.back) : null;
     await pool.query(
       `UPDATE products
-       SET data = data || $2::jsonb, updated_at = NOW()
-       WHERE id = $1 AND data->>'image' = ANY($3::text[])`,
-      [product.id, JSON.stringify(defaultImages), legacyPlaceholderImages]
+       SET data = jsonb_set(
+         (CASE
+           WHEN $4::text IS NOT NULL
+             AND data->>'imageBack' = $4
+             AND COALESCE(data->>'imageBackSource', $5::text) = $5::text
+           THEN data - 'imageBack' - 'imageBackSource'
+           ELSE data
+         END) - 'imageSource',
+         '{image}', to_jsonb($2::text), true
+       ), updated_at = NOW()
+       WHERE id = $1
+         AND data->>'image' = $3
+         AND data->>'imageSource' = $6`,
+      [
+        product.id,
+        product.image,
+        previousImage,
+        previousBackImage,
+        previousBackImageSource,
+        previousImageSource,
+      ]
     );
   }
 }

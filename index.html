@@ -2262,7 +2262,7 @@
           product.imageBackSource ? `<a href="${escapeHTML(product.imageBackSource)}" target="_blank" rel="noreferrer">Second-view credit &amp; licence</a>` : "",
         ].filter(Boolean);
         return sources.length
-          ? `<p class="image-attribution">Representative product imagery · Wikimedia Commons · ${sources.join(" · ")}</p>`
+          ? `<p class="image-attribution">Image credits · ${sources.join(" · ")}</p>`
           : "";
       }
 
