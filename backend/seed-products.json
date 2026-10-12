@@ -1,0 +1,1069 @@
+[
+  {
+    "id": "iphone-7",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 7",
+    "specifications": "Apple iPhone | 32GB / 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 95000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "32GB",
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "32GB": 95000,
+      "64GB": 100000,
+      "128GB": 105000,
+      "256GB": 110000,
+      "512GB": 115000,
+      "1TB": 119000,
+      "2TB": 124000
+    }
+  },
+  {
+    "id": "iphone-7-plus",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 7 Plus",
+    "specifications": "Apple iPhone | 32GB / 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 111000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "32GB",
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "32GB": 111000,
+      "64GB": 116000,
+      "128GB": 121000,
+      "256GB": 125000,
+      "512GB": 130000,
+      "1TB": 135000,
+      "2TB": 140000
+    }
+  },
+  {
+    "id": "iphone-8",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 8",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 130000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 130000,
+      "128GB": 140000,
+      "256GB": 151000,
+      "512GB": 161000,
+      "1TB": 172000,
+      "2TB": 182000
+    }
+  },
+  {
+    "id": "iphone-8-plus",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 8 Plus",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 158000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 158000,
+      "128GB": 168000,
+      "256GB": 179000,
+      "512GB": 189000,
+      "1TB": 200000,
+      "2TB": 210000
+    }
+  },
+  {
+    "id": "iphone-x",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone X",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 220000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 220000,
+      "128GB": 232000,
+      "256GB": 243000,
+      "512GB": 255000,
+      "1TB": 267000,
+      "2TB": 279000
+    }
+  },
+  {
+    "id": "iphone-xr",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone XR",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 252000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 252000,
+      "128GB": 263000,
+      "256GB": 275000,
+      "512GB": 287000,
+      "1TB": 298000,
+      "2TB": 310000
+    }
+  },
+  {
+    "id": "iphone-11",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 11",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 320000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 320000,
+      "128GB": 350000,
+      "256GB": 380000,
+      "512GB": 410000,
+      "1TB": 440000,
+      "2TB": 470000
+    }
+  },
+  {
+    "id": "iphone-11-pro",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 11 Pro",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 360000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 360000,
+      "128GB": 390000,
+      "256GB": 420000,
+      "512GB": 450000,
+      "1TB": 480000,
+      "2TB": 510000
+    }
+  },
+  {
+    "id": "iphone-11-pro-max",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 11 Pro Max",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 401000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 401000,
+      "128GB": 430000,
+      "256GB": 460000,
+      "512GB": 490000,
+      "1TB": 520000,
+      "2TB": 550000
+    }
+  },
+  {
+    "id": "iphone-12",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 12",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 450000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 450000,
+      "128GB": 485000,
+      "256GB": 520000,
+      "512GB": 555000,
+      "1TB": 590000,
+      "2TB": 626000
+    }
+  },
+  {
+    "id": "iphone-12-pro",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 12 Pro",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 497000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 497000,
+      "128GB": 532000,
+      "256GB": 567000,
+      "512GB": 603000,
+      "1TB": 638000,
+      "2TB": 673000
+    }
+  },
+  {
+    "id": "iphone-12-pro-max",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 12 Pro Max",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 545000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 545000,
+      "128GB": 580000,
+      "256GB": 615000,
+      "512GB": 650000,
+      "1TB": 685000,
+      "2TB": 720000
+    }
+  },
+  {
+    "id": "iphone-13",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 13",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 620000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 620000,
+      "128GB": 667000,
+      "256GB": 714000,
+      "512GB": 760000,
+      "1TB": 807000,
+      "2TB": 854000
+    }
+  },
+  {
+    "id": "iphone-13-pro",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 13 Pro",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 683000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 683000,
+      "128GB": 730000,
+      "256GB": 777000,
+      "512GB": 823000,
+      "1TB": 870000,
+      "2TB": 917000
+    }
+  },
+  {
+    "id": "iphone-13-pro-max",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 13 Pro Max",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 746000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 746000,
+      "128GB": 793000,
+      "256GB": 840000,
+      "512GB": 886000,
+      "1TB": 933000,
+      "2TB": 980000
+    }
+  },
+  {
+    "id": "iphone-14",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 14",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 800000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 800000,
+      "128GB": 872000,
+      "256GB": 943000,
+      "512GB": 1015000,
+      "1TB": 1086000,
+      "2TB": 1158000
+    }
+  },
+  {
+    "id": "iphone-14-pro",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 14 Pro",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 896000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 896000,
+      "128GB": 968000,
+      "256GB": 1039000,
+      "512GB": 1111000,
+      "1TB": 1182000,
+      "2TB": 1254000
+    }
+  },
+  {
+    "id": "iphone-14-pro-max",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 14 Pro Max",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 993000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 993000,
+      "128GB": 1064000,
+      "256GB": 1136000,
+      "512GB": 1207000,
+      "1TB": 1279000,
+      "2TB": 1350000
+    }
+  },
+  {
+    "id": "iphone-15",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 15",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 1100000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 1100000,
+      "128GB": 1198000,
+      "256GB": 1295000,
+      "512GB": 1393000,
+      "1TB": 1490000,
+      "2TB": 1588000
+    }
+  },
+  {
+    "id": "iphone-15-pro",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 15 Pro",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 1231000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 1231000,
+      "128GB": 1329000,
+      "256GB": 1426000,
+      "512GB": 1524000,
+      "1TB": 1621000,
+      "2TB": 1719000
+    }
+  },
+  {
+    "id": "iphone-15-pro-max",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 15 Pro Max",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 1363000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 1363000,
+      "128GB": 1460000,
+      "256GB": 1558000,
+      "512GB": 1655000,
+      "1TB": 1753000,
+      "2TB": 1850000
+    }
+  },
+  {
+    "id": "iphone-16",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 16",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 1500000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 1500000,
+      "128GB": 1643000,
+      "256GB": 1786000,
+      "512GB": 1929000,
+      "1TB": 2072000,
+      "2TB": 2215000
+    }
+  },
+  {
+    "id": "iphone-16-pro",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 16 Pro",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 1693000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 1693000,
+      "128GB": 1836000,
+      "256GB": 1979000,
+      "512GB": 2122000,
+      "1TB": 2265000,
+      "2TB": 2408000
+    }
+  },
+  {
+    "id": "iphone-16-pro-max",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 16 Pro Max",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 1885000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 1885000,
+      "128GB": 2028000,
+      "256GB": 2171000,
+      "512GB": 2314000,
+      "1TB": 2457000,
+      "2TB": 2600000
+    }
+  },
+  {
+    "id": "iphone-17",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 17",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 1900000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 1900000,
+      "128GB": 2069000,
+      "256GB": 2238000,
+      "512GB": 2407000,
+      "1TB": 2576000,
+      "2TB": 2745000
+    }
+  },
+  {
+    "id": "iphone-17-pro",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 17 Pro",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 2128000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 2128000,
+      "128GB": 2297000,
+      "256GB": 2466000,
+      "512GB": 2635000,
+      "1TB": 2804000,
+      "2TB": 2973000
+    }
+  },
+  {
+    "id": "iphone-17-pro-max",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 17 Pro Max",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 2355000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 2355000,
+      "128GB": 2524000,
+      "256GB": 2693000,
+      "512GB": 2862000,
+      "1TB": 3031000,
+      "2TB": 3200000
+    }
+  },
+  {
+    "id": "iphone-18",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 18",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 2400000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 2400000,
+      "128GB": 2621000,
+      "256GB": 2842000,
+      "512GB": 3063000,
+      "1TB": 3284000,
+      "2TB": 3505000
+    }
+  },
+  {
+    "id": "iphone-18-pro",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 18 Pro",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 2698000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 2698000,
+      "128GB": 2919000,
+      "256GB": 3140000,
+      "512GB": 3361000,
+      "1TB": 3582000,
+      "2TB": 3803000
+    }
+  },
+  {
+    "id": "iphone-18-pro-max",
+    "category": "Phones",
+    "filter": "iPhones",
+    "brand": "Apple",
+    "title": "iPhone 18 Pro Max",
+    "specifications": "Apple iPhone | 64GB / 128GB / 256GB / 512GB / 1TB / 2TB Storage",
+    "price": 2995000,
+    "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock",
+    "storage": [
+      "64GB",
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB",
+      "2TB"
+    ],
+    "storagePrices": {
+      "64GB": 2995000,
+      "128GB": 3216000,
+      "256GB": 3437000,
+      "512GB": 3658000,
+      "1TB": 3879000,
+      "2TB": 4100000
+    }
+  },
+  {
+    "id": "hp-elitebook-840-g8",
+    "category": "Laptops",
+    "filter": "HP Laptops",
+    "brand": "HP",
+    "title": "HP EliteBook 840 G8",
+    "specifications": "Core i7 11th Gen | 16GB RAM | 512GB SSD",
+    "price": 650000,
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock"
+  },
+  {
+    "id": "hp-spectre-x360-14",
+    "category": "Laptops",
+    "filter": "HP Laptops",
+    "brand": "HP",
+    "title": "HP Spectre x360 14",
+    "specifications": "Core i7 12th Gen | 16GB RAM | 1TB OLED",
+    "price": 1250000,
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock"
+  },
+  {
+    "id": "hp-pavilion-15",
+    "category": "Laptops",
+    "filter": "HP Laptops",
+    "brand": "HP",
+    "title": "HP Pavilion 15",
+    "specifications": "AMD Ryzen 7 | 16GB RAM | 512GB SSD",
+    "price": 580000,
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock"
+  },
+  {
+    "id": "hp-zbook-studio-g8",
+    "category": "Laptops",
+    "filter": "HP Laptops",
+    "brand": "HP",
+    "title": "HP ZBook Studio G8",
+    "specifications": "Core i7 | 32GB RAM | 1TB SSD | RTX 3070",
+    "price": 1650000,
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock"
+  },
+  {
+    "id": "hp-probook-450-g9",
+    "category": "Laptops",
+    "filter": "HP Laptops",
+    "brand": "HP",
+    "title": "HP ProBook 450 G9",
+    "specifications": "Core i5 12th Gen | 16GB RAM | 512GB SSD",
+    "price": 520000,
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=900&q=85",
+    "status": "In Stock"
+  },
+  {
+    "id": "mercedes-g63-amg-2019",
+    "category": "Cars",
+    "filter": "Mercedes-Benz",
+    "brand": "Mercedes-Benz",
+    "title": "Mercedes-Benz G 63 AMG (2019)",
+    "specifications": "4.0L V8 Biturbo | Tokunbo",
+    "price": 145000000,
+    "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "mercedes-gle-450-2021",
+    "category": "Cars",
+    "filter": "Mercedes-Benz",
+    "brand": "Mercedes-Benz",
+    "title": "Mercedes-Benz GLE 450 (2021)",
+    "specifications": "3.0L Turbo V6 | Panoramic",
+    "price": 65000000,
+    "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "mercedes-gls-450-2018",
+    "category": "Cars",
+    "filter": "Mercedes-Benz",
+    "brand": "Mercedes-Benz",
+    "title": "Mercedes-Benz GLS 450 (2018)",
+    "specifications": "3.0L V6 Biturbo | 7-Seater",
+    "price": 48000000,
+    "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "mercedes-e300-2017",
+    "category": "Cars",
+    "filter": "Mercedes-Benz",
+    "brand": "Mercedes-Benz",
+    "title": "Mercedes-Benz E300 (2017)",
+    "specifications": "2.0L Turbo | Avantgarde",
+    "price": 28500000,
+    "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "mercedes-c300-amg-2018",
+    "category": "Cars",
+    "filter": "Mercedes-Benz",
+    "brand": "Mercedes-Benz",
+    "title": "Mercedes-Benz C300 AMG Line (2018)",
+    "specifications": "2.0L Turbo I4",
+    "price": 24500000,
+    "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "mercedes-c300-2015",
+    "category": "Cars",
+    "filter": "Mercedes-Benz",
+    "brand": "Mercedes-Benz",
+    "title": "Mercedes-Benz C300 (2015)",
+    "specifications": "Clean Title Tokunbo",
+    "price": 16500000,
+    "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "mercedes-glk-350-2014",
+    "category": "Cars",
+    "filter": "Mercedes-Benz",
+    "brand": "Mercedes-Benz",
+    "title": "Mercedes-Benz GLK 350 (2014)",
+    "specifications": "V6 Engine | Leather",
+    "price": 11500000,
+    "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "mercedes-ml-350-2012",
+    "category": "Cars",
+    "filter": "Mercedes-Benz",
+    "brand": "Mercedes-Benz",
+    "title": "Mercedes-Benz ML 350 (2012)",
+    "specifications": "Full Option",
+    "price": 9800000,
+    "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "toyota-highlander-limited-2015",
+    "category": "Cars",
+    "filter": "Toyota (2010-2018)",
+    "brand": "Toyota",
+    "title": "Toyota Highlander Limited (2015)",
+    "specifications": "3.5L V6 | Automatic | Leather",
+    "price": 21000000,
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "toyota-camry-se-xse-2018",
+    "category": "Cars",
+    "filter": "Toyota (2010-2018)",
+    "brand": "Toyota",
+    "title": "Toyota Camry SE / XSE (2018)",
+    "specifications": "2.5L 4-Cylinder | Automatic",
+    "price": 18500000,
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "toyota-rav4-xle-2016",
+    "category": "Cars",
+    "filter": "Toyota (2010-2018)",
+    "brand": "Toyota",
+    "title": "Toyota RAV4 XLE (2016)",
+    "specifications": "2.5L 4-Cylinder | AWD | Sunroof",
+    "price": 15000000,
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "toyota-camry-se-2015",
+    "category": "Cars",
+    "filter": "Toyota (2010-2018)",
+    "brand": "Toyota",
+    "title": "Toyota Camry SE (2015)",
+    "specifications": "2.5L 4-Cylinder | Reverse Camera",
+    "price": 12500000,
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "toyota-corolla-le-2017",
+    "category": "Cars",
+    "filter": "Toyota (2010-2018)",
+    "brand": "Toyota",
+    "title": "Toyota Corolla LE (2017)",
+    "specifications": "1.8L 4-Cylinder | Eco Mode",
+    "price": 11500000,
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "toyota-venza-xle-2013",
+    "category": "Cars",
+    "filter": "Toyota (2010-2018)",
+    "brand": "Toyota",
+    "title": "Toyota Venza XLE (2013)",
+    "specifications": "3.5L V6 | Panorama Roof",
+    "price": 10200000,
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "toyota-camry-le-2012",
+    "category": "Cars",
+    "filter": "Toyota (2010-2018)",
+    "brand": "Toyota",
+    "title": "Toyota Camry LE (2012)",
+    "specifications": "2.5L 4-Cylinder | Clean Fabric",
+    "price": 8800000,
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "toyota-corolla-le-2012",
+    "category": "Cars",
+    "filter": "Toyota (2010-2018)",
+    "brand": "Toyota",
+    "title": "Toyota Corolla LE (2012)",
+    "specifications": "1.8L 4-Cylinder | Fuel Economy",
+    "price": 8200000,
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "toyota-corolla-s-2010",
+    "category": "Cars",
+    "filter": "Toyota (2010-2018)",
+    "brand": "Toyota",
+    "title": "Toyota Corolla S (2010)",
+    "specifications": "1.8L 4-Cylinder | Sport Trim",
+    "price": 6800000,
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  },
+  {
+    "id": "toyota-avalon-limited-2014",
+    "category": "Cars",
+    "filter": "Toyota (2010-2018)",
+    "brand": "Toyota",
+    "title": "Toyota Avalon Limited (2014)",
+    "specifications": "3.5L V6 | Luxury Sedan",
+    "price": 10500000,
+    "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=85",
+    "status": "Available"
+  }
+]
