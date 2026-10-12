@@ -3179,6 +3179,7 @@
       renderCart();
       renderDeliveryZones();
       loadBackendData();
+      if (window.location.pathname.replace(/\/+$/, "") === "/admin") openAdminDashboard();
     </script>
   </body>
 </html>
