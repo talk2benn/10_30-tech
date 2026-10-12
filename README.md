@@ -38,6 +38,14 @@ Admins can provide a product image by entering an HTTP(S) image URL or uploading
 
 Render serves both the storefront and API from the same origin. Do not deploy `index.html` by itself to GitHub Pages: a static Pages site cannot access the backend's same-origin API configuration.
 
+## Deploy the storefront with Vercel
+
+The Vercel deployment hosts the storefront and admin page as static files and rewrites `/api/*` to the existing Render service. This keeps the PostgreSQL database, admin credentials, and order processing on Render; keep that service running for the Vercel storefront's API and admin features to work.
+
+1. Import this GitHub repository into Vercel and deploy from the repository root. No build command or output directory is required.
+2. `vercel.json` maps `/admin` to `admin.html` and proxies API requests to the Render backend.
+3. After deployment, verify the storefront, `/admin`, and `/api/health` on the Vercel domain.
+
 ## API overview
 
 - `GET /api/health`, `/api/products`, `/api/delivery-zones`
