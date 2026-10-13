@@ -16,8 +16,8 @@
     />
     <style>
       :root {
-        --bg: #efece6;
-        --panel: #efece6;
+        --bg: #f4f1ea;
+        --panel: #f4f1ea;
         --paper: #f8f6f1;
         --ink: #222222;
         --muted: #777777;
@@ -1455,9 +1455,10 @@
       }
 
       .hero {
-        min-height: min(760px, calc(100svh - 118px));
-        grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.9fr);
-        background: linear-gradient(115deg, #f4f1ea 0%, #f4f1ea 55%, #e6e2d8 100%);
+        min-height: 80svh;
+        display: flex;
+        align-items: center;
+        background: #222722;
         border-bottom-color: rgba(47, 62, 48, 0.14);
       }
 
@@ -1466,7 +1467,9 @@
       }
 
       .hero-copy {
-        min-height: 690px;
+        width: min(68%, 920px);
+        min-height: 80svh;
+        padding-block: 70px;
       }
 
       .hero-copy .kicker,
@@ -1476,44 +1479,51 @@
         color: var(--blue);
       }
 
+      .hero-copy .kicker {
+        color: rgba(248, 246, 241, 0.78);
+      }
+
       .hero-copy h1 {
         max-width: 760px;
-        color: var(--ink);
-        font-size: clamp(66px, 7.7vw, 116px);
-        line-height: 0.88;
+        color: #f8f6f1;
+        font-size: clamp(54px, 6.6vw, 100px);
+        line-height: 0.94;
       }
 
       .hero-copy p {
-        max-width: 540px;
-        color: #67665f;
+        max-width: 590px;
+        color: rgba(248, 246, 241, 0.84);
         font-size: clamp(16px, 1.4vw, 19px);
       }
 
       .hero-footer {
         position: static;
-        margin-top: 64px;
+        margin-top: 38px;
       }
 
       .hero-count {
-        color: var(--blue);
+        color: rgba(248, 246, 241, 0.88);
       }
 
       .scroll-note {
-        color: #777777;
+        color: rgba(248, 246, 241, 0.7);
       }
 
       .hero-media {
-        min-height: 690px;
-        overflow: visible;
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        min-height: 0;
+        overflow: hidden;
         border: 0;
-        background: transparent;
+        background: #222722;
       }
 
       .hero-frame {
         position: absolute;
         overflow: hidden;
         margin: 0;
-        box-shadow: 0 28px 70px rgba(34, 34, 34, 0.18);
+        box-shadow: none;
       }
 
       .hero-frame img {
@@ -1523,40 +1533,50 @@
         object-fit: cover;
       }
 
+      .hero-frame-car {
+        inset: 0;
+      }
+
       .hero-frame::after {
         position: absolute;
         content: "";
-        inset: 45% 0 0;
-        background: linear-gradient(transparent, rgba(16, 20, 15, 0.58));
+        inset: 0;
+        background: transparent;
+      }
+
+      .hero-media::after {
+        position: absolute;
+        z-index: 1;
+        content: "";
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(12, 16, 13, 0.82) 0%, rgba(12, 16, 13, 0.62) 42%, rgba(12, 16, 13, 0.16) 100%),
+          linear-gradient(0deg, rgba(12, 16, 13, 0.34), transparent 52%);
       }
 
       .hero-frame figcaption {
-        position: absolute;
-        z-index: 1;
-        left: 18px;
-        bottom: 18px;
-        color: #fff;
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-      }
-
-      .hero-frame-car {
-        inset: 50px 7% 50px 0;
+        display: none;
       }
 
       .hero-frame-phone {
         z-index: 2;
-        right: 0;
-        bottom: 92px;
-        width: 38%;
-        height: 44%;
-        border: 8px solid #f4f1ea;
+        right: clamp(24px, 7vw, 100px);
+        bottom: 15%;
+        width: clamp(320px, 36vw, 500px);
+        aspect-ratio: 860 / 623;
+        height: auto;
+        border: 1px solid rgba(248, 246, 241, 0.58);
+        border-radius: 4px;
+        background: #f8f6f1;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
       }
 
-      .hero-media::after {
+      .hero-frame-phone::after {
         display: none;
+      }
+
+      .hero-frame-phone img {
+        object-fit: contain;
       }
 
       .catalogue {
@@ -1590,6 +1610,7 @@
       .product-card {
         align-self: start;
         width: 100%;
+        cursor: pointer;
         border-color: rgba(47, 62, 48, 0.12);
         background: #faf8f3;
         animation: card-arrive 420ms ease both;
@@ -1819,7 +1840,6 @@
         }
 
         .hero {
-          grid-template-columns: minmax(0, 1fr);
           width: 100%;
           min-width: 0;
         }
@@ -1830,39 +1850,115 @@
         }
 
         .hero-copy {
-          min-height: 490px;
-          padding: 58px 22px 36px;
+          width: 100%;
+          min-height: 76svh;
+          padding: 48px 22px;
         }
 
         .hero-copy h1 {
-          font-size: clamp(58px, 16vw, 82px);
+          font-size: clamp(48px, 13vw, 70px);
         }
 
         .hero-footer {
-          margin-top: 36px;
+          margin-top: 28px;
         }
 
         .hero-media {
-          min-height: 380px;
-          margin: 0 18px 32px;
+          min-height: 0;
+          margin: 0;
         }
 
-        .hero-frame-car {
-          inset: 0 8% 0 0;
+        .hero-media::after {
+          background:
+            linear-gradient(90deg, rgba(12, 16, 13, 0.78), rgba(12, 16, 13, 0.3)),
+            linear-gradient(0deg, rgba(12, 16, 13, 0.4), transparent 70%);
         }
 
         .hero-frame-phone {
-          bottom: 24px;
-          height: 54%;
-          width: 38%;
+          right: 18px;
+          bottom: 7%;
+          width: min(54vw, 260px);
+          height: auto;
+          aspect-ratio: 860 / 623;
         }
 
         .product-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-auto-rows: auto;
+          grid-auto-flow: row;
+          column-gap: 8px;
+          row-gap: 10px;
         }
 
-        .product-card:nth-child(n) {
+        .product-card:nth-child(n),
+        .product-card:nth-child(n) .product-image {
           margin-top: 0;
+        }
+
+        .product-card:nth-child(n) .product-image {
+          height: 132px;
+          aspect-ratio: auto;
+        }
+
+        .product-body {
+          min-height: 0;
+          padding: 10px;
+        }
+
+        .product-brand {
+          display: block;
+          overflow: hidden;
+          color: #77776f;
+          font-size: 9px;
+          letter-spacing: 0.1em;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .product-category,
+        .product-specs,
+        .product-card .storage-select,
+        .product-card .product-actions,
+        .product-card .image-attribution {
+          display: none;
+        }
+
+        .product-title {
+          overflow: hidden;
+          margin-top: 5px;
+          color: #222;
+          font-family: Inter, system-ui, sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          line-height: 1.25;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .product-meta {
+          margin-top: 6px;
+        }
+
+        .product-meta .spec-label {
+          display: none;
+        }
+
+        .product-price {
+          margin-top: 0;
+          color: var(--blue);
+          font-size: 13px;
+        }
+
+        .product-status {
+          top: 7px;
+          left: 7px;
+          padding: 5px 7px;
+          font-size: 8px;
+        }
+
+        .product-card:focus-visible {
+          outline: 2px solid var(--blue);
+          outline-offset: 2px;
         }
 
         .icon-footer-grid {
@@ -1873,6 +1969,12 @@
         .footer-icon-card {
           width: 56px;
           min-height: 56px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .product-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
         }
       }
     </style>
@@ -1915,7 +2017,7 @@
         <div class="hero-copy">
           <span class="kicker">The Luxury Ecosystem</span>
           <h1>Performance, Engineered for Motion.</h1>
-          <p>An elite curation of flagship smartphones, advanced computing power, and prestigious automobiles. Crafted for those who demand distinction.</p>
+          <p>An elite curation of flagship smartphones, advanced computing power, and prestigious automobiles.</p>
           <a class="hero-button" href="#inventory">Explore Curation ↗</a>
           <div class="hero-footer" aria-hidden="true">
             <span class="hero-count">CURATED IN LAGOS</span>
@@ -1929,8 +2031,8 @@
             <figcaption>Mercedes-Benz · Performance</figcaption>
           </figure>
           <figure class="hero-frame hero-frame-phone">
-            <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=700&q=85" alt="Flagship smartphone" />
-            <figcaption>iPhone · Precision</figcaption>
+            <img src="assets/hero-phones.webp" alt="Flagship smartphones in a range of premium finishes" />
+            <figcaption>Flagship smartphones · Precision</figcaption>
           </figure>
         </div>
       </section>
@@ -2270,6 +2372,13 @@
         return selectedStorage.get(product.id) || product.storage?.[0];
       }
 
+      function getProductWhatsAppUrl(product) {
+        const storage = getStorage(product);
+        const variant = storage ? ` (${storage})` : "";
+        const message = `Hello 1030 Tech, I would like to purchase the ${product.title}${variant} listed at ${formatNaira(getPrice(product, storage))}.`;
+        return `https://wa.me/2348143862405?text=${encodeURIComponent(message)}`;
+      }
+
       function getPrice(product, storage = getStorage(product)) {
         if (storage && product.storagePrices && Number.isFinite(Number(product.storagePrices[storage]))) {
           return Number(product.storagePrices[storage]);
@@ -2350,11 +2459,11 @@
                    </select>`
                 : "";
               return `
-              <article class="product-card">
+              <article class="product-card" data-product-id="${escapeHTML(product.id)}" tabindex="0" aria-label="View details for ${escapeHTML(product.title)}">
                 ${renderProductImageGallery(product, "product-image")}
                 ${renderImageAttribution(product)}
                 <div class="product-body">
-                  <span class="product-brand">${escapeHTML(product.brand)} / ${escapeHTML(product.category)}</span>
+                  <span class="product-brand">${escapeHTML(product.brand)}<span class="product-category"> / ${escapeHTML(product.category)}</span></span>
                   <h3 class="product-title">${escapeHTML(product.title)}</h3>
                   <p class="product-specs">${escapeHTML(product.specifications)}</p>
                   ${storageControl}
@@ -2380,9 +2489,14 @@
       function layoutProductGrid() {
         const rowHeight = 8;
         const rowGap = 22;
+        const isCompactLayout = window.matchMedia("(max-width: 760px)").matches;
         productGrid.querySelectorAll(".product-card").forEach((card) => {
-          const marginTop = Number.parseFloat(getComputedStyle(card).marginTop) || 0;
-          card.style.gridRowEnd = `span ${Math.ceil((card.offsetHeight + marginTop + rowGap) / (rowHeight + rowGap))}`;
+          if (isCompactLayout) {
+            card.style.gridRowEnd = "auto";
+          } else {
+            const marginTop = Number.parseFloat(getComputedStyle(card).marginTop) || 0;
+            card.style.gridRowEnd = `span ${Math.ceil((card.offsetHeight + marginTop + rowGap) / (rowHeight + rowGap))}`;
+          }
           const image = card.querySelector("img");
           if (!image.complete && image.dataset.masonryLoadPending !== "true") {
             image.dataset.masonryLoadPending = "true";
@@ -2475,6 +2589,10 @@
         });
         const modalPrice = productModal.querySelector(`[data-modal-price]`);
         if (modalPrice && productModal.dataset.productId === productId) modalPrice.textContent = price;
+        const whatsappLink = productModal.querySelector("[data-product-whatsapp]");
+        if (whatsappLink && productModal.dataset.productId === productId) {
+          whatsappLink.href = getProductWhatsAppUrl(product);
+        }
       }
 
       function openModal(modal) {
@@ -2584,7 +2702,10 @@
                     ${product.storage.map((storage) => `<option value="${escapeHTML(storage)}" ${getStorage(product) === storage ? "selected" : ""}>${escapeHTML(storage)}</option>`).join("")}
                   </select>` : ""}
                 <p class="modal-price" data-modal-price>${formatNaira(getPrice(product))}</p>
-                <button class="product-add-button" type="button" data-add-to-cart="${escapeHTML(product.id)}">Add to Cart</button>
+                <div class="product-actions product-modal-actions">
+                  <button class="product-add-button" type="button" data-add-to-cart="${escapeHTML(product.id)}">Add to Cart</button>
+                  <a class="product-link" data-product-whatsapp href="${escapeHTML(getProductWhatsAppUrl(product))}" target="_blank" rel="noopener noreferrer">WhatsApp to Buy</a>
+                </div>
               </div>
             </div>
           </div>
@@ -2636,8 +2757,26 @@
       productGrid.addEventListener("click", (event) => {
         const addButton = event.target.closest("[data-add-to-cart]");
         const detailsButton = event.target.closest("[data-view-product]");
-        if (addButton) addToCart(addButton.dataset.addToCart);
-        if (detailsButton) showProduct(detailsButton.dataset.viewProduct);
+        if (addButton) {
+          addToCart(addButton.dataset.addToCart);
+          return;
+        }
+        if (detailsButton) {
+          showProduct(detailsButton.dataset.viewProduct);
+          return;
+        }
+        const card = event.target.closest(".product-card");
+        if (card && !event.target.closest("a, button, input, select, textarea")) {
+          showProduct(card.dataset.productId);
+        }
+      });
+
+      productGrid.addEventListener("keydown", (event) => {
+        const card = event.target.closest(".product-card");
+        if (card && event.target === card && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault();
+          showProduct(card.dataset.productId);
+        }
       });
 
       productModal.addEventListener("change", (event) => {
